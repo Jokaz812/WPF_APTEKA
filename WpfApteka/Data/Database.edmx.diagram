@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9ef01dfe60064d76825016d57d423267" Name="Diagram1">
+        <EntityTypeShape EntityType="AptekaModel.CATEGORIES" Width="1.5" PointX="0.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.CHECKS" Width="1.5" PointX="0.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.FABRICATOR" Width="1.5" PointX="6.375" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.INVOICE" Width="1.5" PointX="2.375" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.INVOICE_LIST" Width="1.5" PointX="4.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.MEDICINE" Width="1.5" PointX="2.375" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.RELEASE_FORM" Width="1.5" PointX="6.375" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.SHOPPING_LIST" Width="1.5" PointX="4.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.SUPPLIER" Width="1.5" PointX="4.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.WORKERS" Width="1.625" PointX="0.5" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="AptekaModel.FK_MEDICINE_CATEGORIES" ManuallyRouted="false" />
+        <AssociationConnector Association="AptekaModel.FK_CHECKS_WORKERS" ManuallyRouted="false" />
+        <AssociationConnector Association="AptekaModel.FK_SHOPPING_LIST_CHECKS" ManuallyRouted="false" />
+        <AssociationConnector Association="AptekaModel.FK_MEDICINE_FABRICATOR" ManuallyRouted="false" />
+        <AssociationConnector Association="AptekaModel.FK_INVOICE_LIST_INVOICE" ManuallyRouted="false" />
+        <AssociationConnector Association="AptekaModel.FK_INVOICE_SUPPLIER" ManuallyRouted="false" />
+        <AssociationConnector Association="AptekaModel.FK_INVOICE_LIST_MEDICINE" ManuallyRouted="false" />
+        <AssociationConnector Association="AptekaModel.FK_MEDICINE_RELEASE_FORM" ManuallyRouted="false" />
+        <AssociationConnector Association="AptekaModel.FK_SHOPPING_LIST_MEDICINE" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,63 @@
+﻿<Page x:Class="WpfApteka.Pages.SupPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApteka.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SupPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0" x:Name="SupSplitterColumn"/>
+            <ColumnDefinition Width="0" x:Name="SupChangeColumn" MaxWidth="200"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle Fill="#cee0f2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
+        <Label Content="Поставщик" Grid.ColumnSpan="3" FontSize="20" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
+
+        <StackPanel Background="#cee0f2" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
+            <Button x:Name="AddSupButton" Content="Добавить" Width="75" Margin="5,0,0,0" Click="AddSupButton_Click" Height="25"/>
+            <Button x:Name="CopySupButton" Content="Копировать" Width="75" Margin="5,0,0,0" Click="CopySupButton_Click" Height="25"/>
+            <Button x:Name="EditSupButton" Content="Изменить" Width="75" Margin="5,0,0,0" Click="EditSupButton_Click" Height="25"/>
+            <Button x:Name="DeleteSupButton" Content="Удалить" Width="75" Margin="5,0,0,0" Click="DeleteSupButton_Click" Height="25"/>
+        </StackPanel>
+
+        <DataGrid x:Name="SupDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название поставщика" Binding="{Binding Path=NAME_SUP}" Width="2*"/>
+                <DataGridTextColumn Header="Адресс" Binding="{Binding Path=ADDRESS}" Width="*"/>
+                <DataGridTextColumn Header="Город" Binding="{Binding Path=CITY}" Width="*"/>
+                <DataGridTextColumn Header="Страна" Binding="{Binding Path=COUNTRY}" Width="*"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Path=TELEPHONE}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <GridSplitter Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Width="5"/>
+
+        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Vertical">
+            <Button Content="X" Grid.Row="2" Grid.Column="2" Click="CloseEdChangeClick"  Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+            <Label x:Name="SupLabel" Content="Новый поставщик" Margin="0 -26.8 0 0" FontSize="14" Foreground="Black"/>
+            <Label x:Name="FIOLabel" Content="Поставщик" Foreground="Black"/>
+            <TextBox Text="{Binding ElementName=SupDataGrid, Path=SelectedItem.NAME_SUP}" x:Name="NAME_SUPTextBox"/>
+            <Label x:Name="AddressLabel" Content="Адресс" Foreground="Black"/>
+            <TextBox Text="{Binding ElementName=SupDataGrid, Path=SelectedItem.ADDRESS}" x:Name="ADDRESSTextBox"/>
+            <Label x:Name="CityLabel" Content="Город" Foreground="Black"/>
+            <TextBox Text="{Binding ElementName=SupDataGrid, Path=SelectedItem.CITY}" x:Name="CITYTextBox"/>
+            <Label x:Name="CountryLabel" Content="Страна" Foreground="Black"/>
+            <TextBox Text="{Binding ElementName=SupDataGrid, Path=SelectedItem.COUNTRY}" x:Name="COUNTRYTextBox"/>
+            <Label x:Name="TelephoneLabel" Content="Телефон" Foreground="Black"/>
+            <TextBox Text="{Binding ElementName=SupDataGrid, Path=SelectedItem.TELEPHONE}" x:Name="TELEPHONETextBox"/>
+            <Button Height="25" Content="Принять" Click="CommitButtonSup" Margin="0 10 0 10" VerticalAlignment="Bottom"/>
+        </StackPanel>
+        
+    </Grid>
+</Page>

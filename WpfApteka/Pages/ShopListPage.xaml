@@ -1,0 +1,56 @@
+﻿<Page x:Class="WpfApteka.Pages.ShopListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApteka.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ShopListPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="250"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="250" MinWidth="250" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Список покупок" FontSize="15" Grid.ColumnSpan="3" Background="#cee0f2" FontWeight="ExtraBlack"/>
+
+        <DockPanel x:Name="ShopListDataGridDockPanel" Grid.Row="1" Grid.Column="0" 
+                   Grid.ColumnSpan="3" Background="#cee0f2">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="25" 
+                        Margin="0,5,0,0" Background="#cee0f2">
+                <Button x:Name="AddShopListButton" Content="Новая" Width="75" 
+                        Margin="5,0,0,0" Click="AddShopListButton_Click" Height="25" VerticalAlignment="Bottom"/>
+                <Button x:Name="CopyShopListButton" Content="Копировать" Width="75" 
+                        Margin="5,0,0,0" Click="CopyShopListButton_Click"/>
+                <Button x:Name="EditShopListButton" Content="Изменить" Width="75" 
+                        Margin="5,0,0,0" Click="EditShopListButton_Click" Height="25" VerticalAlignment="Bottom"/>
+                <Button x:Name="DeleteShopListButton" Content="Удалить" Width="75" 
+                        Margin="5,0,0,0" Click="DeleteShopListButton_Click" />
+            </StackPanel>
+
+            <DockPanel Background="#badcf7" DockPanel.Dock="Top" Margin="0,3,0,0" />
+
+            <DataGrid x:Name="ShopListGrid" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название лекарства" Binding="{Binding Path=MEDICINE.NAME_MED}" Width="*"/>
+                    <DataGridTextColumn Header="Количество" Binding="{Binding Path=COUNTS}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
+        <GridSplitter x:Name="DialogGridSplitter" Grid.Column="1" Grid.Row="1" 
+                      HorizontalAlignment="Center" Width="3" Visibility="Hidden"/>
+
+        <ScrollViewer x:Name="DialogScrollViewer" Grid.Row="1" Grid.Column="2" 
+                      Visibility="Hidden" VerticalScrollBarVisibility="Auto" >
+            <Frame x:Name="DialogFrame" />
+        </ScrollViewer>
+    </Grid>
+</Page>

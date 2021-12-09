@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AptekaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CATEGORIES">
+    <Key>
+      <PropertyRef Name="ID_C" />
+    </Key>
+    <Property Name="ID_C" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME_CAT" Type="varchar" MaxLength="80" />
+  </EntityType>
+  <EntityType Name="CHECKS">
+    <Key>
+      <PropertyRef Name="ID_CH" />
+    </Key>
+    <Property Name="ID_CH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_W" Type="int" />
+    <Property Name="TIME_SALE" Type="time" Precision="6" />
+    <Property Name="DATE_SALE" Type="date" />
+  </EntityType>
+  <EntityType Name="FABRICATOR">
+    <Key>
+      <PropertyRef Name="ID_F" />
+    </Key>
+    <Property Name="ID_F" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME_FAB" Type="varchar" MaxLength="50" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="30" />
+    <Property Name="CITY" Type="varchar" MaxLength="30" />
+    <Property Name="COUNTRY" Type="varchar" MaxLength="30" />
+    <Property Name="TELEPHONE" Type="varchar" MaxLength="12" />
+  </EntityType>
+  <EntityType Name="INVOICE">
+    <Key>
+      <PropertyRef Name="ID_I" />
+    </Key>
+    <Property Name="ID_I" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="BDATE" Type="date" />
+    <Property Name="ID_S" Type="int" />
+  </EntityType>
+  <EntityType Name="INVOICE_LIST">
+    <Key>
+      <PropertyRef Name="ID_IL" />
+    </Key>
+    <Property Name="ID_IL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_I" Type="int" />
+    <Property Name="ID_M" Type="int" />
+    <Property Name="COUNTS" Type="int" />
+  </EntityType>
+  <EntityType Name="MEDICINE">
+    <Key>
+      <PropertyRef Name="ID_M" />
+    </Key>
+    <Property Name="ID_M" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME_MED" Type="varchar" MaxLength="50" />
+    <Property Name="ID_C" Type="int" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="350" />
+    <Property Name="ID_R" Type="int" />
+    <Property Name="ID_F" Type="int" />
+    <Property Name="DATE_DELIVERY" Type="date" />
+    <Property Name="PRICE" Type="decimal" Precision="15" Scale="2" />
+  </EntityType>
+  <EntityType Name="RELEASE_FORM">
+    <Key>
+      <PropertyRef Name="ID_R" />
+    </Key>
+    <Property Name="ID_R" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME_REAL" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SHOPPING_LIST">
+    <Key>
+      <PropertyRef Name="ID_SL" />
+    </Key>
+    <Property Name="ID_SL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_M" Type="int" />
+    <Property Name="COUNTS" Type="int" />
+    <Property Name="ID_CH" Type="int" />
+  </EntityType>
+  <EntityType Name="SUPPLIER">
+    <Key>
+      <PropertyRef Name="ID_S" />
+    </Key>
+    <Property Name="ID_S" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME_SUP" Type="varchar" MaxLength="50" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="30" />
+    <Property Name="CITY" Type="varchar" MaxLength="30" />
+    <Property Name="COUNTRY" Type="varchar" MaxLength="30" />
+    <Property Name="TELEPHONE" Type="varchar" MaxLength="12" />
+  </EntityType>
+  <EntityType Name="WORKERS">
+    <Key>
+      <PropertyRef Name="ID_W" />
+    </Key>
+    <Property Name="ID_W" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIO" Type="varchar" MaxLength="50" />
+    <Property Name="DATE_BIRTHDAY" Type="date" />
+    <Property Name="DATE_ACCEPTANCE" Type="date" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="30" />
+    <Property Name="CITY" Type="varchar" MaxLength="30" />
+    <Property Name="TELEPHONE" Type="varchar" MaxLength="12" />
+  </EntityType>
+  <Association Name="FK_CHECKS_WORKERS">
+    <End Role="WORKERS" Type="Self.WORKERS" Multiplicity="0..1" />
+    <End Role="CHECKS" Type="Self.CHECKS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WORKERS">
+        <PropertyRef Name="ID_W" />
+      </Principal>
+      <Dependent Role="CHECKS">
+        <PropertyRef Name="ID_W" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INVOICE_LIST_INVOICE">
+    <End Role="INVOICE" Type="Self.INVOICE" Multiplicity="0..1" />
+    <End Role="INVOICE_LIST" Type="Self.INVOICE_LIST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INVOICE">
+        <PropertyRef Name="ID_I" />
+      </Principal>
+      <Dependent Role="INVOICE_LIST">
+        <PropertyRef Name="ID_I" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INVOICE_LIST_MEDICINE">
+    <End Role="MEDICINE" Type="Self.MEDICINE" Multiplicity="0..1" />
+    <End Role="INVOICE_LIST" Type="Self.INVOICE_LIST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MEDICINE">
+        <PropertyRef Name="ID_M" />
+      </Principal>
+      <Dependent Role="INVOICE_LIST">
+        <PropertyRef Name="ID_M" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INVOICE_SUPPLIER">
+    <End Role="SUPPLIER" Type="Self.SUPPLIER" Multiplicity="0..1" />
+    <End Role="INVOICE" Type="Self.INVOICE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUPPLIER">
+        <PropertyRef Name="ID_S" />
+      </Principal>
+      <Dependent Role="INVOICE">
+        <PropertyRef Name="ID_S" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MEDICINE_CATEGORIES">
+    <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="0..1" />
+    <End Role="MEDICINE" Type="Self.MEDICINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIES">
+        <PropertyRef Name="ID_C" />
+      </Principal>
+      <Dependent Role="MEDICINE">
+        <PropertyRef Name="ID_C" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MEDICINE_FABRICATOR">
+    <End Role="FABRICATOR" Type="Self.FABRICATOR" Multiplicity="0..1" />
+    <End Role="MEDICINE" Type="Self.MEDICINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FABRICATOR">
+        <PropertyRef Name="ID_F" />
+      </Principal>
+      <Dependent Role="MEDICINE">
+        <PropertyRef Name="ID_F" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MEDICINE_RELEASE_FORM">
+    <End Role="RELEASE_FORM" Type="Self.RELEASE_FORM" Multiplicity="0..1" />
+    <End Role="MEDICINE" Type="Self.MEDICINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RELEASE_FORM">
+        <PropertyRef Name="ID_R" />
+      </Principal>
+      <Dependent Role="MEDICINE">
+        <PropertyRef Name="ID_R" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SHOPPING_LIST_CHECKS">
+    <End Role="CHECKS" Type="Self.CHECKS" Multiplicity="0..1" />
+    <End Role="SHOPPING_LIST" Type="Self.SHOPPING_LIST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHECKS">
+        <PropertyRef Name="ID_CH" />
+      </Principal>
+      <Dependent Role="SHOPPING_LIST">
+        <PropertyRef Name="ID_CH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SHOPPING_LIST_MEDICINE">
+    <End Role="MEDICINE" Type="Self.MEDICINE" Multiplicity="0..1" />
+    <End Role="SHOPPING_LIST" Type="Self.SHOPPING_LIST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MEDICINE">
+        <PropertyRef Name="ID_M" />
+      </Principal>
+      <Dependent Role="SHOPPING_LIST">
+        <PropertyRef Name="ID_M" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="AptekaModelStoreContainer">
+    <EntitySet Name="CATEGORIES" EntityType="Self.CATEGORIES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CHECKS" EntityType="Self.CHECKS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FABRICATOR" EntityType="Self.FABRICATOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INVOICE" EntityType="Self.INVOICE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INVOICE_LIST" EntityType="Self.INVOICE_LIST" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MEDICINE" EntityType="Self.MEDICINE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RELEASE_FORM" EntityType="Self.RELEASE_FORM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SHOPPING_LIST" EntityType="Self.SHOPPING_LIST" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SUPPLIER" EntityType="Self.SUPPLIER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WORKERS" EntityType="Self.WORKERS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CHECKS_WORKERS" Association="Self.FK_CHECKS_WORKERS">
+      <End Role="WORKERS" EntitySet="WORKERS" />
+      <End Role="CHECKS" EntitySet="CHECKS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INVOICE_LIST_INVOICE" Association="Self.FK_INVOICE_LIST_INVOICE">
+      <End Role="INVOICE" EntitySet="INVOICE" />
+      <End Role="INVOICE_LIST" EntitySet="INVOICE_LIST" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INVOICE_LIST_MEDICINE" Association="Self.FK_INVOICE_LIST_MEDICINE">
+      <End Role="MEDICINE" EntitySet="MEDICINE" />
+      <End Role="INVOICE_LIST" EntitySet="INVOICE_LIST" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INVOICE_SUPPLIER" Association="Self.FK_INVOICE_SUPPLIER">
+      <End Role="SUPPLIER" EntitySet="SUPPLIER" />
+      <End Role="INVOICE" EntitySet="INVOICE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MEDICINE_CATEGORIES" Association="Self.FK_MEDICINE_CATEGORIES">
+      <End Role="CATEGORIES" EntitySet="CATEGORIES" />
+      <End Role="MEDICINE" EntitySet="MEDICINE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MEDICINE_FABRICATOR" Association="Self.FK_MEDICINE_FABRICATOR">
+      <End Role="FABRICATOR" EntitySet="FABRICATOR" />
+      <End Role="MEDICINE" EntitySet="MEDICINE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MEDICINE_RELEASE_FORM" Association="Self.FK_MEDICINE_RELEASE_FORM">
+      <End Role="RELEASE_FORM" EntitySet="RELEASE_FORM" />
+      <End Role="MEDICINE" EntitySet="MEDICINE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SHOPPING_LIST_CHECKS" Association="Self.FK_SHOPPING_LIST_CHECKS">
+      <End Role="CHECKS" EntitySet="CHECKS" />
+      <End Role="SHOPPING_LIST" EntitySet="SHOPPING_LIST" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SHOPPING_LIST_MEDICINE" Association="Self.FK_SHOPPING_LIST_MEDICINE">
+      <End Role="MEDICINE" EntitySet="MEDICINE" />
+      <End Role="SHOPPING_LIST" EntitySet="SHOPPING_LIST" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

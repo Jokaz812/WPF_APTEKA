@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AptekaModelStoreContainer" CdmEntityContainer="AptekaEntities">
+    <EntitySetMapping Name="CATEGORIES">
+      <EntityTypeMapping TypeName="AptekaModel.CATEGORIES">
+        <MappingFragment StoreEntitySet="CATEGORIES">
+          <ScalarProperty Name="ID_C" ColumnName="ID_C" />
+          <ScalarProperty Name="NAME_CAT" ColumnName="NAME_CAT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHECKS">
+      <EntityTypeMapping TypeName="AptekaModel.CHECKS">
+        <MappingFragment StoreEntitySet="CHECKS">
+          <ScalarProperty Name="ID_CH" ColumnName="ID_CH" />
+          <ScalarProperty Name="ID_W" ColumnName="ID_W" />
+          <ScalarProperty Name="TIME_SALE" ColumnName="TIME_SALE" />
+          <ScalarProperty Name="DATE_SALE" ColumnName="DATE_SALE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FABRICATOR">
+      <EntityTypeMapping TypeName="AptekaModel.FABRICATOR">
+        <MappingFragment StoreEntitySet="FABRICATOR">
+          <ScalarProperty Name="ID_F" ColumnName="ID_F" />
+          <ScalarProperty Name="NAME_FAB" ColumnName="NAME_FAB" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+          <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INVOICE">
+      <EntityTypeMapping TypeName="AptekaModel.INVOICE">
+        <MappingFragment StoreEntitySet="INVOICE">
+          <ScalarProperty Name="ID_I" ColumnName="ID_I" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="BDATE" ColumnName="BDATE" />
+          <ScalarProperty Name="ID_S" ColumnName="ID_S" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INVOICE_LIST">
+      <EntityTypeMapping TypeName="AptekaModel.INVOICE_LIST">
+        <MappingFragment StoreEntitySet="INVOICE_LIST">
+          <ScalarProperty Name="ID_IL" ColumnName="ID_IL" />
+          <ScalarProperty Name="ID_I" ColumnName="ID_I" />
+          <ScalarProperty Name="ID_M" ColumnName="ID_M" />
+          <ScalarProperty Name="COUNTS" ColumnName="COUNTS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MEDICINE">
+      <EntityTypeMapping TypeName="AptekaModel.MEDICINE">
+        <MappingFragment StoreEntitySet="MEDICINE">
+          <ScalarProperty Name="ID_M" ColumnName="ID_M" />
+          <ScalarProperty Name="NAME_MED" ColumnName="NAME_MED" />
+          <ScalarProperty Name="ID_C" ColumnName="ID_C" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="ID_R" ColumnName="ID_R" />
+          <ScalarProperty Name="ID_F" ColumnName="ID_F" />
+          <ScalarProperty Name="DATE_DELIVERY" ColumnName="DATE_DELIVERY" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RELEASE_FORM">
+      <EntityTypeMapping TypeName="AptekaModel.RELEASE_FORM">
+        <MappingFragment StoreEntitySet="RELEASE_FORM">
+          <ScalarProperty Name="ID_R" ColumnName="ID_R" />
+          <ScalarProperty Name="NAME_REAL" ColumnName="NAME_REAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SHOPPING_LIST">
+      <EntityTypeMapping TypeName="AptekaModel.SHOPPING_LIST">
+        <MappingFragment StoreEntitySet="SHOPPING_LIST">
+          <ScalarProperty Name="ID_SL" ColumnName="ID_SL" />
+          <ScalarProperty Name="ID_M" ColumnName="ID_M" />
+          <ScalarProperty Name="COUNTS" ColumnName="COUNTS" />
+          <ScalarProperty Name="ID_CH" ColumnName="ID_CH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUPPLIER">
+      <EntityTypeMapping TypeName="AptekaModel.SUPPLIER">
+        <MappingFragment StoreEntitySet="SUPPLIER">
+          <ScalarProperty Name="ID_S" ColumnName="ID_S" />
+          <ScalarProperty Name="NAME_SUP" ColumnName="NAME_SUP" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+          <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WORKERS">
+      <EntityTypeMapping TypeName="AptekaModel.WORKERS">
+        <MappingFragment StoreEntitySet="WORKERS">
+          <ScalarProperty Name="ID_W" ColumnName="ID_W" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="DATE_BIRTHDAY" ColumnName="DATE_BIRTHDAY" />
+          <ScalarProperty Name="DATE_ACCEPTANCE" ColumnName="DATE_ACCEPTANCE" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="AptekaModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="AptekaModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="AptekaModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="AptekaModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AptekaModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="AptekaModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AptekaModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="AptekaModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="AptekaModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

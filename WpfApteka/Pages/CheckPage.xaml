@@ -1,0 +1,65 @@
+﻿<Page x:Class="WpfApteka.Pages.CheckPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApteka.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CheckPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0" x:Name="CheckSplitterColumn"/>
+            <ColumnDefinition Width="0" x:Name="CheckChangeColumn" MaxWidth="200"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle Fill="#cee0f2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
+        <Label Content="Чек" Grid.ColumnSpan="3" FontSize="20" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
+
+        <StackPanel Background="#cee0f2" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
+            <Button x:Name="AddCheckButton" Content="Добавить" Width="75" Margin="5,0,0,0" Click="AddCheckButton_Click" Height="25"/>
+            <Button x:Name="CopyCheckButton" Content="Копировать" Width="75" Margin="5,0,0,0" Click="CopyCheckButton_Click" Height="25"/>
+            <Button x:Name="EditCheckButton" Content="Изменить" Width="75" Margin="5,0,0,0" Click="EditCheckButton_Click" Height="25"/>
+            <Button x:Name="DeleteCheckButton" Content="Удалить" Width="75" Margin="5,0,0,0" Click="DeleteCheckButton_Click" Height="25"/>
+        </StackPanel>
+
+        <DataGrid x:Name="CheckDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Сотрудник" Binding="{Binding Path=WORKERS.FIO}" Width="*"/>
+                <DataGridTextColumn Header="Время продажи" Binding="{Binding Path=TIME_SALE}" Width="*"/>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.Header>
+                        Дата продажи
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Path=DATE_SALE}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <GridSplitter Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Width="5"/>
+
+        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Vertical">
+            <Button Content="X" Click="CloseEdChangeClick"  Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+            <Label x:Name="CheckLabel" FontSize="14" Content="Новый чек" Foreground="Black" Margin="0 -26.8 0 0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <Label x:Name="WorkLabel" Content="Сотрудник" Foreground="Black"/>
+            <ComboBox x:Name="WorkComboBox" DisplayMemberPath="FIO" Text="{Binding ElementName=CheckDataGrid, Path=SelectedItem.WORKERS.FIO}"/>
+            <Label x:Name="TIME_SALELabel" Content="Время продажи" Foreground="Black"/>
+            <TextBox Text="{Binding ElementName=CheckDataGrid, Path=SelectedItem.TIME_SALE}" x:Name="TIME_SALETextBox"/>
+            <Label x:Name="DATE_SALELabel" Content="Дата продажи" Foreground="Black"/>
+            <DatePicker SelectedDate="{Binding ElementName=CheckDataGrid, Path=SelectedItem.DATE_SALE}" Text="{Binding ElementName=CheckDataGrid, Path=SelectedItem.DATE_SALE}" x:Name="DATE_SALETextBox"/>
+            <Button Height="25" Content="Принять" Click="CommitButtonCheck" Margin="0 10 0 10" VerticalAlignment="Bottom"/>
+        </StackPanel>
+    </Grid>
+</Page>
