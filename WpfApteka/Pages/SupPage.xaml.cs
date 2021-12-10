@@ -163,5 +163,15 @@ namespace WpfApteka.Pages
             SupDataGrid.ItemsSource = SourceCore.DB.SUPPLIER.ToList();
             SupDataGrid.SelectedItem = Sup;
         }
+
+        private void FilterSupComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void FilterSupBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

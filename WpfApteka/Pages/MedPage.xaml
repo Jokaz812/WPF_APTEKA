@@ -22,13 +22,15 @@
         </Grid.RowDefinitions>
 
         <Rectangle Fill="#cee0f2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
-        <Label Content="Лекарство" Grid.ColumnSpan="3" FontSize="20" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
+        <Label Content="Лекарство" Grid.ColumnSpan="3" FontSize="16" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
 
         <StackPanel Background="#cee0f2" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
             <Button x:Name="AddMedButton" Content="Добавить" Width="75" Margin="5,0,0,0" Click="AddMedButton_Click" Height="25"/>
-            <Button x:Name="CopyMedButton" Content="Копировать" Width="75" Margin="5,0,0,0" Click="CopyMedButton_Click" Height="25"/>
+            <Button x:Name="CopyMedButton"  Content="Добавление на основе" Width="140" Margin="5,0,0,0" Click="CopyMedButton_Click" Height="25"/>
             <Button x:Name="EditMedButton" Content="Изменить" Width="75" Margin="5,0,0,0" Click="EditMedButton_Click" Height="25"/>
             <Button x:Name="DeleteMedButton" Content="Удалить" Width="75" Margin="5,0,0,0" Click="DeleteMedButton_Click" Height="25"/>
+            <ComboBox Name="FilterMedComboBox" Width="170" Margin="5,5" SelectionChanged="FilterMedComboBox_SelectionChanged"/>
+            <TextBox x:Name="FilterMedTextBox" Width="250" Margin="0,5" TextChanged="FilterMedBox_TextChanged" />
         </StackPanel>
 
         <DataGrid x:Name="MedDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
@@ -49,6 +51,18 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Цена" Binding="{Binding Path=PRICE}" Width="*"/>
+                <DataGridTemplateColumn Header="Управление">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Изм." Width="30" Margin="5,0,0,0"
+                                            FontSize="8" Click="EditMedButton_Click"/>
+                                <Button Content="Удал." Width="30" Margin="5,0,5,0"
+                                            FontSize="8" Click="DeleteMedButton_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -60,13 +74,13 @@
             <Label x:Name="NAME_MEDLabel" Content="Лекарство" Foreground="Black"/>
             <TextBox Text="{Binding ElementName=MedDataGrid, Path=SelectedItem.NAME_MED}" x:Name="NAME_MEDTextBox"/>
             <Label x:Name="AddressLabel" Content="Категория" Foreground="Black"/>
-            <ComboBox x:Name="CatComboBox" DisplayMemberPath="NAME_CAT" Text="{Binding ElementName=MedDataGrid, Path=SelectedItem.CATEGORIES.NAME_CAT}"/>
+            <ComboBox x:Name="CatComboBox" DisplayMemberPath="NAME_CAT" SelectedItem="{Binding ElementName=MedDataGrid, Path=SelectedItem.CATEGORIES}"/>
             <Label x:Name="DESCRIPTIONLabel" Content="Описание" Foreground="Black"/>
             <TextBox Text="{Binding ElementName=MedDataGrid, Path=SelectedItem.DESCRIPTION}" x:Name="DESCRIPTIONTextBox"/>
             <Label x:Name="NAME_REALLabel" Content="Форма выпуска лекарства" Foreground="Black"/>
-            <ComboBox x:Name="RealComboBox" DisplayMemberPath="NAME_REAL" Text="{Binding ElementName=MedDataGrid, Path=SelectedItem.RELEASE_FORM.NAME_REAL}"/>
+            <ComboBox x:Name="RealComboBox" DisplayMemberPath="NAME_REAL" SelectedItem="{Binding ElementName=MedDataGrid, Path=SelectedItem.RELEASE_FORM}"/>
             <Label x:Name="NAME_FABLabel" Content="Производитель" Foreground="Black"/>
-            <ComboBox x:Name="FabComboBox" DisplayMemberPath="NAME_FAB" Text="{Binding ElementName=MedDataGrid, Path=SelectedItem.FABRICATOR.NAME_FAB}"/>
+            <ComboBox x:Name="FabComboBox" DisplayMemberPath="NAME_FAB" SelectedItem="{Binding ElementName=MedDataGrid, Path=SelectedItem.FABRICATOR}"/>
             <Button Height="25" Content="Принять" Click="CommitButtonMed" Margin="0 10 0 10" VerticalAlignment="Bottom"/>
         </StackPanel>
     </Grid>

@@ -22,16 +22,17 @@
         </Grid.RowDefinitions>
 
         <Rectangle Fill="#cee0f2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
-        <Label Content="Накладная" Grid.ColumnSpan="3" FontSize="20" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
+        <Label Content="Накладная" Grid.ColumnSpan="3" FontSize="16" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
 
         <StackPanel Background="#cee0f2" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
             <Button x:Name="AddInvButton" Content="Добавить" Width="75" Margin="5,0,0,0" Click="AddInvButton_Click" Height="25"/>
-            <Button x:Name="CopyInvButton" Content="Копировать" Width="75" Margin="5,0,0,0" Click="CopyInvButton_Click" Height="25"/>
+            <Button x:Name="CopyInvButton"  Content="Добавление на основе" Width="140" Margin="5,0,0,0" Click="CopyInvButton_Click" Height="25"/>
             <Button x:Name="EditInvButton" Content="Изменить" Width="75" Margin="5,0,0,0" Click="EditInvButton_Click" Height="25"/>
             <Button x:Name="DeleteInvButton" Content="Удалить" Width="75" Margin="5,0,0,0" Click="DeleteInvButton_Click" Height="25"/>
+            <ComboBox Name="FilterInvComboBox" Width="170" Margin="5,5" SelectionChanged="FilterInvComboBox_SelectionChanged"/>
+            <TextBox x:Name="FilterInvTextBox" Width="250" Margin="0,5" TextChanged="FilterInvTextBox_TextChanged" />
         </StackPanel>
 
-        <DataGrid x:Name="InvDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
         <DataGrid x:Name="InvDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Накладная" Binding="{Binding Path=NAME}" Width="*"/>
@@ -46,6 +47,18 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=SUPPLIER.NAME_SUP}" Width="*"/>
+                <DataGridTemplateColumn Header="Управление">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Изм." Width="30" Margin="5,0,0,0"
+                                            FontSize="8" Click="EditInvButton_Click"/>
+                                <Button Content="Удал." Width="30" Margin="5,0,5,0"
+                                            FontSize="8" Click="DeleteInvButton_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -59,7 +72,7 @@
             <Label x:Name="BDATELabel" Content="Дата накладной" Foreground="Black"/>
             <DatePicker SelectedDate="{Binding ElementName=InvDataGrid, Path=SelectedItem.BDATE}" Text="{Binding ElementName=InvDataGrid, Path=SelectedItem.BDATE}" x:Name="BDATETextBox"/>
             <Label x:Name="NAME_SUPLabel" Content="Поставщик" Foreground="Black"/>
-            <ComboBox x:Name="SupComboBox" DisplayMemberPath="NAME_SUP" Text="{Binding ElementName=InvDataGrid, Path=SelectedItem.SUPPLIER.NAME_SUP}"/>
+            <ComboBox x:Name="SupComboBox" DisplayMemberPath="NAME_SUP" SelectedItem="{Binding ElementName=InvDataGrid, Path=SelectedItem.SUPPLIER}"/>
             <Button Height="25" Content="Принять" Click="CommitButtonInv" Margin="0 10 0 10" VerticalAlignment="Bottom"/>
         </StackPanel>
     </Grid>

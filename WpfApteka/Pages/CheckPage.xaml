@@ -22,13 +22,15 @@
         </Grid.RowDefinitions>
 
         <Rectangle Fill="#cee0f2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
-        <Label Content="Чек" Grid.ColumnSpan="3" FontSize="20" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
+        <Label Content="Чек" Grid.ColumnSpan="3" FontSize="16" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
 
         <StackPanel Background="#cee0f2" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
             <Button x:Name="AddCheckButton" Content="Добавить" Width="75" Margin="5,0,0,0" Click="AddCheckButton_Click" Height="25"/>
-            <Button x:Name="CopyCheckButton" Content="Копировать" Width="75" Margin="5,0,0,0" Click="CopyCheckButton_Click" Height="25"/>
+            <Button x:Name="CopyCheckButton"  Content="Добавление на основе" Width="140" Margin="5,0,0,0" Click="CopyCheckButton_Click" Height="25"/>
             <Button x:Name="EditCheckButton" Content="Изменить" Width="75" Margin="5,0,0,0" Click="EditCheckButton_Click" Height="25"/>
             <Button x:Name="DeleteCheckButton" Content="Удалить" Width="75" Margin="5,0,0,0" Click="DeleteCheckButton_Click" Height="25"/>
+            <ComboBox Name="FilterCheckComboBox" Width="170" Margin="5,5" SelectionChanged="FilterCheckComboBox_SelectionChanged"/>
+            <TextBox x:Name="FilterCheckTextBox" Width="250" Margin="0,5" TextChanged="FilterCheckTextBox_TextChanged" />
         </StackPanel>
 
         <DataGrid x:Name="CheckDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
@@ -45,6 +47,18 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Управление">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Изм." Width="30" Margin="5,0,0,0"
+                                            FontSize="8" Click="EditCheckButton_Click"/>
+                                <Button Content="Удал." Width="30" Margin="5,0,5,0"
+                                            FontSize="8" Click="DeleteCheckButton_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -54,7 +68,7 @@
             <Button Content="X" Click="CloseEdChangeClick"  Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
             <Label x:Name="CheckLabel" FontSize="14" Content="Новый чек" Foreground="Black" Margin="0 -26.8 0 0" HorizontalAlignment="Left" VerticalAlignment="Top" />
             <Label x:Name="WorkLabel" Content="Сотрудник" Foreground="Black"/>
-            <ComboBox x:Name="WorkComboBox" DisplayMemberPath="FIO" Text="{Binding ElementName=CheckDataGrid, Path=SelectedItem.WORKERS.FIO}"/>
+            <ComboBox x:Name="WorkComboBox" DisplayMemberPath="FIO" SelectedItem="{Binding ElementName=CheckDataGrid, Path=SelectedItem.WORKERS}"/>
             <Label x:Name="TIME_SALELabel" Content="Время продажи" Foreground="Black"/>
             <TextBox Text="{Binding ElementName=CheckDataGrid, Path=SelectedItem.TIME_SALE}" x:Name="TIME_SALETextBox"/>
             <Label x:Name="DATE_SALELabel" Content="Дата продажи" Foreground="Black"/>

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfApteka.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CatPage">
+      Title="CatPage" Loaded="Page_Loaded">
 
     <Grid>
 
@@ -23,19 +23,32 @@
         </Grid.RowDefinitions>
 
         <Rectangle Fill="#cee0f2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
-        <Label Content="Категория" Grid.ColumnSpan="3" FontSize="20" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
+        <Label Content="Категория" Grid.ColumnSpan="3" FontSize="16" VerticalAlignment="Bottom" FontWeight="ExtraBold"/>
 
         <StackPanel Background="#cee0f2" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
             <Button x:Name="AddCatButton" Content="Добавить" Width="75" Margin="5,0,0,0" Click="AddCatButton_Click" Height="25"/>
-            <Button x:Name="CopyCatButton" Content="Копировать" Width="75" Margin="5,0,0,0" Click="CopyCatButton_Click" Height="25"/>
+            <Button x:Name="CopyCatButton" Content="Добавление на основе" Width="140" Margin="5,0,0,0" Click="CopyCatButton_Click" Height="25"/>
             <Button x:Name="EditCatButton" Content="Изменить" Width="75" Margin="5,0,0,0" Click="EditCatButton_Click" Height="25"/>
             <Button x:Name="DeleteCatButton" Content="Удалить" Width="75" Margin="5,0,0,0" Click="DeleteCatButton_Click" Height="25"/>
-         </StackPanel>
-
+            <ComboBox Name="FilterCatComboBox" Width="170" Margin="5,5" SelectionChanged="FilterCatComboBox_SelectionChanged"/>
+            <TextBox x:Name="FilterCatTextBox" Width="250" Margin="0,5" TextChanged="FilterCatTextBox_TextChanged" />
+        </StackPanel>
 
         <DataGrid x:Name="CatDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название категории" Binding="{Binding Path=NAME_CAT}" Width="*"/>
+                <DataGridTemplateColumn Header="Управление">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Изм." Width="30" Margin="5,0,0,0"
+                                            FontSize="8" Click="EditCatButton_Click"/>
+                                <Button Content="Удал." Width="30" Margin="5,0,5,0"
+                                            FontSize="8" Click="DeleteCatButton_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 

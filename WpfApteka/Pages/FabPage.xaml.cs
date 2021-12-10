@@ -162,5 +162,15 @@ namespace WpfApteka.Pages
             FabDataGrid.ItemsSource = SourceCore.DB.FABRICATOR.ToList();
             FabDataGrid.SelectedItem = Fab;
         }
+
+        private void FilterFabComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void FilterFabTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

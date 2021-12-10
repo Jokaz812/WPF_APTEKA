@@ -166,5 +166,15 @@ namespace WpfApteka.Pages
             MedDataGrid.ItemsSource = SourceCore.DB.MEDICINE.ToList();
             MedDataGrid.SelectedItem = Med;
         }
+
+        private void FilterMedComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void FilterMedBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

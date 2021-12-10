@@ -145,5 +145,36 @@ namespace WpfApteka.Pages
             RealDataGrid.ItemsSource = SourceCore.DB.RELEASE_FORM.ToList();
             RealDataGrid.SelectedItem = Real;
         }
+
+        private void FilterRealComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void FilterRealBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textbox = sender as TextBox;
+            switch (FilterRealComboBox.SelectedIndex)
+            {
+                case 0:
+                    RealDataGrid.ItemsSource = SourceCore.DB.RELEASE_FORM.Where(filtercase => filtercase.NAME_REAL.Contains(textbox.Text)).ToList();
+                    break;
+            }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<String> Columns = new List<string>();
+            for (int I = 0; I < 1; I++)
+            {
+                Columns.Add(RealDataGrid.Columns[I].Header.ToString());
+            }
+            FilterRealComboBox.ItemsSource = Columns;
+            FilterRealComboBox.SelectedIndex = 0;
+            foreach (DataGridColumn Column in RealDataGrid.Columns)
+            {
+                Column.CanUserSort = false;
+            }
+        }
     }
 }

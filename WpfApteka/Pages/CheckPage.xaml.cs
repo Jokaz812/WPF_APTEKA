@@ -153,5 +153,15 @@ namespace WpfApteka.Pages
             CheckDataGrid.ItemsSource = SourceCore.DB.CHECKS.ToList();
             CheckDataGrid.SelectedItem = Check;
         }
+
+        private void FilterCheckComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void FilterCheckTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

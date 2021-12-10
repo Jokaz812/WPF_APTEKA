@@ -146,5 +146,36 @@ namespace WpfApteka.Pages
             CatDataGrid.ItemsSource = SourceCore.DB.CATEGORIES.ToList();
             CatDataGrid.SelectedItem = Cat;
         }
+
+        private void FilterCatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void FilterCatTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textbox = sender as TextBox;
+            switch (FilterCatComboBox.SelectedIndex)
+            {
+                case 0:
+                    CatDataGrid.ItemsSource = SourceCore.DB.CATEGORIES.Where(filtercase => filtercase.NAME_CAT.Contains(textbox.Text)).ToList();
+                    break;
+            }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<String> Columns = new List<string>();
+            for (int I = 0; I < 1; I++)
+            {
+                Columns.Add(CatDataGrid.Columns[I].Header.ToString());
+            }
+            FilterCatComboBox.ItemsSource = Columns;
+            FilterCatComboBox.SelectedIndex = 0;
+            foreach (DataGridColumn Column in CatDataGrid.Columns)
+            {
+                Column.CanUserSort = false;
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfApteka.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="RealPage">
+      Title="RealPage" Loaded="Page_Loaded">
 
     <Grid>
         
@@ -23,18 +23,32 @@
         </Grid.RowDefinitions>
 
         <Rectangle Fill="#cee0f2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
-        <Label Content="Форма выпуска лекарства" Grid.ColumnSpan="3" FontSize="20" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
+        <Label Content="Форма выпуска лекарства" Grid.ColumnSpan="3" FontSize="16" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
 
         <StackPanel Background="#cee0f2" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
             <Button x:Name="AddRealButton" Content="Добавить" Width="75" Margin="5,0,0,0" Click="AddRealButton_Click" Height="25"/>
-            <Button x:Name="CopyRealButton" Content="Копировать" Width="75" Margin="5,0,0,0" Click="CopyRealButton_Click" Height="25"/>
+            <Button x:Name="CopyRealButton"  Content="Добавление на основе" Width="140" Margin="5,0,0,0" Click="CopyRealButton_Click" Height="25"/>
             <Button x:Name="EditRealButton" Content="Изменить" Width="75" Margin="5,0,0,0" Click="EditRealButton_Click" Height="25"/>
             <Button x:Name="DeleteRealButton" Content="Удалить" Width="75" Margin="5,0,0,0" Click="DeleteRealButton_Click" Height="25"/>
+            <ComboBox Name="FilterRealComboBox" Width="185" Margin="5,5" SelectionChanged="FilterRealComboBox_SelectionChanged"/>
+            <TextBox x:Name="FilterRealTextBox" Width="235" Margin="0,5" TextChanged="FilterRealBox_TextChanged" />
         </StackPanel>
 
         <DataGrid x:Name="RealDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название формы лекарства" Binding="{Binding Path=NAME_REAL}" Width="*"/>
+                <DataGridTemplateColumn Header="Управление">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Изм." Width="30" Margin="5,0,0,0"
+                                            FontSize="8" Click="EditRealButton_Click"/>
+                                <Button Content="Удал." Width="30" Margin="5,0,5,0"
+                                            FontSize="8" Click="DeleteRealButton_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 

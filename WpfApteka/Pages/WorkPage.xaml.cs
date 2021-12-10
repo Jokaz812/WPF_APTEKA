@@ -167,5 +167,15 @@ namespace WpfApteka.Pages
             WorkDataGrid.ItemsSource = SourceCore.DB.WORKERS.ToList();
             WorkDataGrid.SelectedItem = Work;
         }
+
+        private void FilterWorkComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void FilterWorkBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

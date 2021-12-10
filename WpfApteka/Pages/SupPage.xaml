@@ -22,13 +22,15 @@
         </Grid.RowDefinitions>
 
         <Rectangle Fill="#cee0f2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
-        <Label Content="Поставщик" Grid.ColumnSpan="3" FontSize="20" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
+        <Label Content="Поставщик" Grid.ColumnSpan="3" FontSize="16" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
 
         <StackPanel Background="#cee0f2" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
             <Button x:Name="AddSupButton" Content="Добавить" Width="75" Margin="5,0,0,0" Click="AddSupButton_Click" Height="25"/>
-            <Button x:Name="CopySupButton" Content="Копировать" Width="75" Margin="5,0,0,0" Click="CopySupButton_Click" Height="25"/>
+            <Button x:Name="CopySupButton"  Content="Добавление на основе" Width="140" Margin="5,0,0,0" Click="CopySupButton_Click" Height="25"/>
             <Button x:Name="EditSupButton" Content="Изменить" Width="75" Margin="5,0,0,0" Click="EditSupButton_Click" Height="25"/>
             <Button x:Name="DeleteSupButton" Content="Удалить" Width="75" Margin="5,0,0,0" Click="DeleteSupButton_Click" Height="25"/>
+            <ComboBox Name="FilterSupComboBox" Width="170" Margin="5,5" SelectionChanged="FilterSupComboBox_SelectionChanged"/>
+            <TextBox x:Name="FilterSupTextBox" Width="250" Margin="0,5" TextChanged="FilterSupBox_TextChanged" />
         </StackPanel>
 
         <DataGrid x:Name="SupDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
@@ -38,6 +40,18 @@
                 <DataGridTextColumn Header="Город" Binding="{Binding Path=CITY}" Width="*"/>
                 <DataGridTextColumn Header="Страна" Binding="{Binding Path=COUNTRY}" Width="*"/>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding Path=TELEPHONE}" Width="*"/>
+                <DataGridTemplateColumn Header="Управление">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Изм." Width="30" Margin="5,0,0,0"
+                                            FontSize="8" Click="EditSupButton_Click"/>
+                                <Button Content="Удал." Width="30" Margin="5,0,5,0"
+                                            FontSize="8" Click="DeleteSupButton_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 

@@ -22,13 +22,15 @@
         </Grid.RowDefinitions>
 
         <Rectangle Fill="#cee0f2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
-        <Label Content="Производитель" Grid.ColumnSpan="3" FontSize="20" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
+        <Label Content="Производитель" Grid.ColumnSpan="3" FontSize="16" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
 
         <StackPanel Background="#cee0f2" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
             <Button x:Name="AddFabButton" Content="Добавить" Width="75" Margin="5,0,0,0" Click="AddFabButton_Click" Height="25"/>
-            <Button x:Name="CopyFabButton" Content="Копировать" Width="75" Margin="5,0,0,0" Click="CopyFabButton_Click" Height="25"/>
+            <Button x:Name="CopyFabButton"  Content="Добавление на основе" Width="140" Margin="5,0,0,0" Click="CopyFabButton_Click" Height="25"/>
             <Button x:Name="EditFabButton" Content="Изменить" Width="75" Margin="5,0,0,0" Click="EditFabButton_Click" Height="25"/>
             <Button x:Name="DeleteFabButton" Content="Удалить" Width="75" Margin="5,0,0,0" Click="DeleteFabButton_Click" Height="25"/>
+            <ComboBox Name="FilterFabComboBox" Width="170" Margin="5,5" SelectionChanged="FilterFabComboBox_SelectionChanged"/>
+            <TextBox x:Name="FilterFabTextBox" Width="250" Margin="0,5" TextChanged="FilterFabTextBox_TextChanged" />
         </StackPanel>
 
         <DataGrid x:Name="FabDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
@@ -38,6 +40,18 @@
                 <DataGridTextColumn Header="Город" Binding="{Binding Path=CITY}" Width="*"/>
                 <DataGridTextColumn Header="Страна" Binding="{Binding Path=COUNTRY}" Width="*"/>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding Path=TELEPHONE}" Width="*"/>
+                <DataGridTemplateColumn Header="Управление">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Изм." Width="30" Margin="5,0,0,0"
+                                            FontSize="8" Click="EditFabButton_Click"/>
+                                <Button Content="Удал." Width="30" Margin="5,0,5,0"
+                                            FontSize="8" Click="DeleteFabButton_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 

@@ -22,13 +22,15 @@
         </Grid.RowDefinitions>
 
         <Rectangle Fill="#cee0f2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
-        <Label Content="Сотрудники" Grid.ColumnSpan="3" FontSize="20" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
+        <Label Content="Сотрудники" Grid.ColumnSpan="3" FontSize="16" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
 
         <StackPanel Background="#cee0f2" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
             <Button x:Name="AddWorkButton" Content="Добавить" Width="75" Margin="5,0,0,0" Click="AddWorkButton_Click" Height="25"/>
-            <Button x:Name="CopyWorkButton" Content="Копировать" Width="75" Margin="5,0,0,0" Click="CopyWorkButton_Click" Height="25"/>
+            <Button x:Name="CopyWorkButton"  Content="Добавление на основе" Width="140" Margin="5,0,0,0" Click="CopyWorkButton_Click" Height="25"/>
             <Button x:Name="EditWorkButton" Content="Изменить" Width="75" Margin="5,0,0,0" Click="EditWorkButton_Click" Height="25"/>
             <Button x:Name="DeleteWorkButton" Content="Удалить" Width="75" Margin="5,0,0,0" Click="DeleteWorkButton_Click" Height="25"/>
+            <ComboBox Name="FilterWorkComboBox" Width="170" Margin="5,5" SelectionChanged="FilterWorkComboBox_SelectionChanged"/>
+            <TextBox x:Name="FilterWorkTextBox" Width="250" Margin="0,5" TextChanged="FilterWorkBox_TextChanged" />
         </StackPanel>
 
         <DataGrid x:Name="WorkDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
@@ -57,6 +59,18 @@
                 <DataGridTextColumn Header="Адресс" Binding="{Binding Path=ADDRESS}" Width="*"/>
                 <DataGridTextColumn Header="Город" Binding="{Binding Path=CITY}" Width="*"/>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding Path=TELEPHONE}" Width="*"/>
+                <DataGridTemplateColumn Header="Управление">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Изм." Width="30" Margin="5,0,0,0"
+                                            FontSize="8" Click="EditWorkButton_Click"/>
+                                <Button Content="Удал." Width="30" Margin="5,0,5,0"
+                                            FontSize="8" Click="DeleteWorkButton_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 

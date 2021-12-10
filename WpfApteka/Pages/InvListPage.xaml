@@ -10,48 +10,61 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="250"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="250" MinWidth="250" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0" x:Name="InvListSplitterColumn"/>
+            <ColumnDefinition Width="0" x:Name="InvListChangeColumn" MaxWidth="250"/>
         </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Список накладной" FontSize="15" Grid.ColumnSpan="3" Background="#cee0f2" FontWeight="ExtraBlack"/>
+        <Rectangle Fill="#cee0f2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
+        <Label Content="Список накладной" Grid.ColumnSpan="3" FontSize="16" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
 
-        <DockPanel x:Name="InvListDataGridDockPanel" Grid.Row="1" Grid.Column="0" 
-                   Grid.ColumnSpan="3" Background="#cee0f2">
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="25" 
-                        Margin="0,5,0,0" Background="#cee0f2">
-                <Button x:Name="AddInvListButton" Content="Новая" Width="75" 
-                        Margin="5,0,0,0" Click="AddInvListButton_Click" Height="25" VerticalAlignment="Bottom"/>
-                <Button x:Name="CopyInvListButton" Content="Копировать" Width="75" 
-                        Margin="5,0,0,0" Click="CopyInvListButton_Click"/>
-                <Button x:Name="EditInvListButton" Content="Изменить" Width="75" 
-                        Margin="5,0,0,0" Click="EditInvListButton_Click" Height="25" VerticalAlignment="Bottom"/>
-                <Button x:Name="DeleteInvListButton" Content="Удалить" Width="75" 
-                        Margin="5,0,0,0" Click="DeleteInvListButton_Click" Height="25" VerticalAlignment="Bottom" />
-            </StackPanel>
+        <StackPanel Background="#cee0f2" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
+            <Button x:Name="AddInvListButton" Content="Добавить" Width="75" Margin="5,0,0,0" Click="AddInvListButton_Click" Height="25"/>
+            <Button x:Name="CopyInvListButton"  Content="Добавление на основе" Width="140" Margin="5,0,0,0" Click="CopyInvListButton_Click" Height="25"/>
+            <Button x:Name="EditInvListButton" Content="Изменить" Width="75" Margin="5,0,0,0" Click="EditInvListButton_Click" Height="25"/>
+            <Button x:Name="DeleteInvListButton" Content="Удалить" Width="75" Margin="5,0,0,0" Click="DeleteInvListButton_Click" Height="25"/>
+            <ComboBox Name="FilterInvListComboBox" Width="170" Margin="5,5" SelectionChanged="FilterInvListComboBox_SelectionChanged"/>
+            <TextBox x:Name="FilterInvListTextBox" Width="250" Margin="0,5" TextChanged="FilterInvListTextBox_TextChanged" />
+        </StackPanel>
 
-            <DockPanel Background="#badcf7" DockPanel.Dock="Top" Margin="0,3,0,0" />
+        <DataGrid x:Name="InvListDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Накладная" Binding="{Binding Path=INVOICE.NAME}" Width="*"/>
+                <DataGridTextColumn Header="Лекарство" Binding="{Binding Path=MEDICINE.NAME_MED}" Width="*"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Path=COUNTS}" Width="*"/>
+                <DataGridTemplateColumn Header="Управление">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Изм." Width="30" Margin="5,0,0,0"
+                                            FontSize="8" Click="EditInvListButton_Click"/>
+                                <Button Content="Удал." Width="30" Margin="5,0,5,0"
+                                            FontSize="8" Click="DeleteInvListButton_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
-            <DataGrid x:Name="InvListGrid" AutoGenerateColumns="False" CanUserAddRows="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Название накладной" Binding="{Binding Path=INVOICE.NAME}" Width="*"/>
-                    <DataGridTextColumn Header="Название лекарства" Binding="{Binding Path=MEDICINE.NAME_MED}" Width="*"/>
-                    <DataGridTextColumn Header="Количество" Binding="{Binding Path=COUNTS}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </DockPanel>
+        <GridSplitter Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Width="5"/>
 
-        <GridSplitter x:Name="DialogGridSplitter" Grid.Column="1" Grid.Row="1" 
-                      HorizontalAlignment="Center" Width="3" Visibility="Hidden"/>
-
-        <ScrollViewer x:Name="DialogScrollViewer" Grid.Row="1" Grid.Column="2" 
-                      Visibility="Hidden" VerticalScrollBarVisibility="Auto" >
-            <Frame x:Name="DialogFrame" />
-        </ScrollViewer>
+        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Vertical">
+            <Button Content="X" Click="CloseEdChangeClick"  Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+            <Label x:Name="InvListLabel" FontSize="14" Content="Новый список накладной" Foreground="Black" Margin="0 -26.8 0 0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <Label x:Name="InvLabel" Content="Накладная" Foreground="Black"/>
+            <ComboBox x:Name="InvComboBox" DisplayMemberPath="NAME" SelectedItem="{Binding ElementName=InvListDataGrid, Path=SelectedItem.INVOICE}"/>
+            <Label x:Name="MedLabel" Content="Лекарство" Foreground="Black"/>
+            <ComboBox x:Name="MedComboBox" DisplayMemberPath="NAME_MED" SelectedItem="{Binding ElementName=InvListDataGrid, Path=SelectedItem.MEDICINE}"/>
+            <Label x:Name="CountsLabel" Content="Количество" Foreground="Black"/>
+            <TextBox Text="{Binding ElementName=InvListDataGrid, Path=SelectedItem.COUNTS}" x:Name="COUNTSTextBox"/>
+            <Button Height="25" Content="Принять" Click="CommitButtonInvList" Margin="0 10 0 10" VerticalAlignment="Bottom"/>
+        </StackPanel>
     </Grid>
 </Page>

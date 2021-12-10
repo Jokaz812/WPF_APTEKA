@@ -155,5 +155,15 @@ namespace WpfApteka.Pages
             InvDataGrid.ItemsSource = SourceCore.DB.INVOICE.ToList();
             InvDataGrid.SelectedItem = Inv;
         }
+
+        private void FilterInvComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void FilterInvTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
