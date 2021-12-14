@@ -160,7 +160,31 @@ namespace WpfApteka.Pages
 
         private void FilterShopListBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            var textbox = sender as TextBox;
+            switch (FilterShopListComboBox.SelectedIndex)
+            {
+                case 0:
+                    ShopListDataGrid.ItemsSource = SourceCore.DB.SHOPPING_LIST.Where(filtercase => filtercase.MEDICINE.NAME_MED.Contains(textbox.Text)).ToList();
+                    break;
+                case 1:
+                    ShopListDataGrid.ItemsSource = SourceCore.DB.SHOPPING_LIST.Where(filtercase => filtercase.COUNTS.ToString().Contains(textbox.Text)).ToList();
+                    break;
+            }
+        }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<String> Columns = new List<string>();
+            for (int I = 0; I < 2; I++)
+            {
+                Columns.Add(ShopListDataGrid.Columns[I].Header.ToString());
+            }
+            FilterShopListComboBox.ItemsSource = Columns;
+            FilterShopListComboBox.SelectedIndex = 0;
+            foreach (DataGridColumn Column in ShopListDataGrid.Columns)
+            {
+                Column.CanUserSort = false;
+            }
         }
     }
 }

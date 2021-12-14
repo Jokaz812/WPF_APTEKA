@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfApteka.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MedPage">
+      Title="MedPage" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -39,7 +39,7 @@
                 <DataGridTextColumn Header="Категория" Binding="{Binding Path=CATEGORIES.NAME_CAT}" Width="*"/>
                 <DataGridTextColumn Header="Описание" Binding="{Binding Path=DESCRIPTION}" Width="*"/>
                 <DataGridTextColumn Header="Форма лекарства" Binding="{Binding Path=RELEASE_FORM.NAME_REAL}" Width="1.1*"/>
-                <DataGridTextColumn Header="Название производителя" Binding="{Binding Path=FABRICATOR.NAME_FAB}" Width="*"/>
+                <DataGridTextColumn Header="Производитель" Binding="{Binding Path=FABRICATOR.NAME_FAB}" Width="*"/>
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.Header>
                         Дата доставки

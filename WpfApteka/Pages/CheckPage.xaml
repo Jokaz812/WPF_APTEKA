@@ -6,74 +6,85 @@
       xmlns:local="clr-namespace:WpfApteka.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CheckPage">
-
+      Title="CheckPage" Loaded="Page_Loaded">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="0" x:Name="CheckSplitterColumn"/>
-            <ColumnDefinition Width="0" x:Name="CheckChangeColumn" MaxWidth="200"/>
-        </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition Height="35"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-
         <Rectangle Fill="#cee0f2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
         <Label Content="Чек" Grid.ColumnSpan="3" FontSize="16" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
-
         <StackPanel Background="#cee0f2" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
             <Button x:Name="AddCheckButton" Content="Добавить" Width="75" Margin="5,0,0,0" Click="AddCheckButton_Click" Height="25"/>
             <Button x:Name="CopyCheckButton"  Content="Добавление на основе" Width="140" Margin="5,0,0,0" Click="CopyCheckButton_Click" Height="25"/>
             <Button x:Name="EditCheckButton" Content="Изменить" Width="75" Margin="5,0,0,0" Click="EditCheckButton_Click" Height="25"/>
             <Button x:Name="DeleteCheckButton" Content="Удалить" Width="75" Margin="5,0,0,0" Click="DeleteCheckButton_Click" Height="25"/>
             <ComboBox Name="FilterCheckComboBox" Width="170" Margin="5,5" SelectionChanged="FilterCheckComboBox_SelectionChanged"/>
-            <TextBox x:Name="FilterCheckTextBox" Width="250" Margin="0,5" TextChanged="FilterCheckTextBox_TextChanged" />
+            <TextBox x:Name="FilterCheckTextBox" Width="246" Margin="0,5" TextChanged="FilterCheckTextBox_TextChanged" />
         </StackPanel>
-
-        <DataGrid x:Name="CheckDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Сотрудник" Binding="{Binding Path=WORKERS.FIO}" Width="*"/>
-                <DataGridTextColumn Header="Время продажи" Binding="{Binding Path=TIME_SALE}" Width="*"/>
-                <DataGridTemplateColumn Width="*">
-                    <DataGridTemplateColumn.Header>
-                        Дата продажи
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Content="{Binding Path=DATE_SALE}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Управление">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Content="Изм." Width="30" Margin="5,0,0,0"
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="200"/>
+                <ColumnDefinition Width="300" MinWidth="300"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid x:Name="CheckDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Сотрудник" Binding="{Binding Path=WORKERS.FIO}" Width="*"/>
+                    <DataGridTextColumn Header="Время продажи" Binding="{Binding Path=TIME_SALE}" Width="*"/>
+                    <DataGridTemplateColumn Width="*">
+                        <DataGridTemplateColumn.Header>
+                            Дата продажи
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Path=DATE_SALE}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Управление">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Изм." Width="30" Margin="5,0,0,0"
                                             FontSize="8" Click="EditCheckButton_Click"/>
-                                <Button Content="Удал." Width="30" Margin="5,0,5,0"
+                                    <Button Content="Удал." Width="30" Margin="5,0,5,0"
                                             FontSize="8" Click="DeleteCheckButton_Click"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-
-        <GridSplitter Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Width="5"/>
-
-        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Vertical">
-            <Button Content="X" Click="CloseEdChangeClick"  Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-            <Label x:Name="CheckLabel" FontSize="14" Content="Новый чек" Foreground="Black" Margin="0 -26.8 0 0" HorizontalAlignment="Left" VerticalAlignment="Top" />
-            <Label x:Name="WorkLabel" Content="Сотрудник" Foreground="Black"/>
-            <ComboBox x:Name="WorkComboBox" DisplayMemberPath="FIO" SelectedItem="{Binding ElementName=CheckDataGrid, Path=SelectedItem.WORKERS}"/>
-            <Label x:Name="TIME_SALELabel" Content="Время продажи" Foreground="Black"/>
-            <TextBox Text="{Binding ElementName=CheckDataGrid, Path=SelectedItem.TIME_SALE}" x:Name="TIME_SALETextBox"/>
-            <Label x:Name="DATE_SALELabel" Content="Дата продажи" Foreground="Black"/>
-            <DatePicker SelectedDate="{Binding ElementName=CheckDataGrid, Path=SelectedItem.DATE_SALE}" Text="{Binding ElementName=CheckDataGrid, Path=SelectedItem.DATE_SALE}" x:Name="DATE_SALETextBox"/>
-            <Button Height="25" Content="Принять" Click="CommitButtonCheck" Margin="0 10 0 10" VerticalAlignment="Bottom"/>
-        </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Rectangle Fill="#cee0f2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Добавить" Width="75" Height="25" Margin="5 0 0 0" Grid.Column="2" Click="AddShopListButton_Click"/>
+                    <Button Content="Изменить" Width="75" Height="25" Margin="5 0 0 0" Grid.Column="2" Click="EditShopListButton_Click"/>
+                    <Button Content="Удалить"  Width="75" Height="25" Margin="5 0 0 0" Grid.Column="2" Click="DeleteShopListButton_Click"/>
+                </StackPanel>
+                <DataGrid x:Name="ShopListDataGrid" ItemsSource ="{Binding ElementName=CheckDataGrid, Path =SelectedItem.SHOPPING_LIST}"  Grid.Row="2" Grid.Column="2" AutoGenerateColumns="False" CanUserAddRows="False" Background="White" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Лекарство" Binding="{Binding MEDICINE.NAME_MED}" Width="10*" MaxWidth="150"/>
+                        <DataGridTextColumn Header="Количество" Binding="{Binding COUNTS}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
     </Grid>
+    <!--<StackPanel Grid.Row="2" Grid.Column="2" Orientation="Vertical">
+        <Button Content="X" Click="CloseEdChangeClick"  Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Label x:Name="CheckLabel" FontSize="14" Content="Новый чек" Foreground="Black" Margin="0 -26.8 0 0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <Label x:Name="WorkLabel" Content="Сотрудник" Foreground="Black"/>
+        <ComboBox x:Name="WorkComboBox" DisplayMemberPath="FIO" SelectedItem="{Binding ElementName=CheckDataGrid, Path=SelectedItem.WORKERS}"/>
+        <Label x:Name="TIME_SALELabel" Content="Время продажи" Foreground="Black"/>
+        <TextBox Text="{Binding ElementName=CheckDataGrid, Path=SelectedItem.TIME_SALE}" x:Name="TIME_SALETextBox"/>
+        <Label x:Name="DATE_SALELabel" Content="Дата продажи" Foreground="Black"/>
+        <DatePicker SelectedDate="{Binding ElementName=CheckDataGrid, Path=SelectedItem.DATE_SALE, StringFormat=\{0:dd.MM.yyyy\}}" Text="{Binding ElementName=CheckDataGrid, Path=SelectedItem.DATE_SALE}" x:Name="DATE_SALETextBox"/>
+        <Button Height="25" Content="Принять" Click="CommitButtonCheck" Margin="0 10 0 10" VerticalAlignment="Bottom"/>
+    </StackPanel>-->
 </Page>

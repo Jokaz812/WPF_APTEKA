@@ -163,7 +163,34 @@ namespace WpfApteka.Pages
 
         private void FilterInvTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            var textbox = sender as TextBox;
+            switch (FilterInvComboBox.SelectedIndex)
+            {
+                case 0:
+                    InvDataGrid.ItemsSource = SourceCore.DB.INVOICE.Where(filtercase => filtercase.NAME.Contains(textbox.Text)).ToList();
+                    break;
+                case 1:
+                    InvDataGrid.ItemsSource = SourceCore.DB.INVOICE.Where(filtercase => filtercase.BDATE.ToString().Contains(textbox.Text)).ToList();
+                    break;
+                case 2:
+                    InvDataGrid.ItemsSource = SourceCore.DB.INVOICE.Where(filtercase => filtercase.SUPPLIER.NAME_SUP.Contains(textbox.Text)).ToList();
+                    break;
+            }
+        }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<String> Columns = new List<string>();
+            for (int I = 0; I < 3; I++)
+            {
+                Columns.Add(InvDataGrid.Columns[I].Header.ToString());
+            }
+            FilterInvComboBox.ItemsSource = Columns;
+            FilterInvComboBox.SelectedIndex = 0;
+            foreach (DataGridColumn Column in InvDataGrid.Columns)
+            {
+                Column.CanUserSort = false;
+            }
         }
     }
 }

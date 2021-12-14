@@ -58,7 +58,7 @@ namespace WpfApteka.Pages
                 InvListSplitterColumn.Width = GridLength.Auto;
                 if (InvListDataGrid.SelectedItem != null)
                 {
-                    InvListLabel.Content = "Выбранный список накладной";
+                    InvListLabel.Content = "Выбранный список накладных";
                     ID_I = InvComboBox.SelectedIndex;
                     ID_M = MedComboBox.SelectedIndex;
                     COUNTS = Convert.ToInt32(COUNTSTextBox.Text);
@@ -93,7 +93,7 @@ namespace WpfApteka.Pages
 
         private void DeleteInvListButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Удалить выбранную запись списка накладной?", "Внимание!", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show("Удалить выбранную запись в списке накладных?", "Внимание!", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 try
                 {
@@ -164,7 +164,34 @@ namespace WpfApteka.Pages
 
         private void FilterInvListTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            var textbox = sender as TextBox;
+            switch (FilterInvListComboBox.SelectedIndex)
+            {
+                case 0:
+                    InvListDataGrid.ItemsSource = SourceCore.DB.INVOICE_LIST.Where(filtercase => filtercase.INVOICE.NAME.Contains(textbox.Text)).ToList();
+                    break;
+                case 1:
+                    InvListDataGrid.ItemsSource = SourceCore.DB.INVOICE_LIST.Where(filtercase => filtercase.MEDICINE.NAME_MED.Contains(textbox.Text)).ToList();
+                    break;
+                case 2:
+                    InvListDataGrid.ItemsSource = SourceCore.DB.INVOICE_LIST.Where(filtercase => filtercase.COUNTS.ToString().Contains(textbox.Text)).ToList();
+                    break;
+            }
+        }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<String> Columns = new List<string>();
+            for (int I = 0; I < 3; I++)
+            {
+                Columns.Add(InvListDataGrid.Columns[I].Header.ToString());
+            }
+            FilterInvListComboBox.ItemsSource = Columns;
+            FilterInvListComboBox.SelectedIndex = 0;
+            foreach (DataGridColumn Column in InvListDataGrid.Columns)
+            {
+                Column.CanUserSort = false;
+            }
         }
     }
 }

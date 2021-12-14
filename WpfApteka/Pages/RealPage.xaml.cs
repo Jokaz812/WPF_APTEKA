@@ -85,7 +85,7 @@ namespace WpfApteka.Pages
 
         private void DeleteRealButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Удалить выбранную запись форму выпуска лекарства?", "Внимание!", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show("Удалить выбранную запись формы выпуска лекарства?", "Внимание!", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 try
                 {

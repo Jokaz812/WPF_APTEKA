@@ -58,7 +58,7 @@ namespace WpfApteka.Pages
                 FabSplitterColumn.Width = GridLength.Auto;
                 if (FabDataGrid.SelectedItem != null)
                 {
-                    FabLabel.Content = "Выбран поставщик";
+                    FabLabel.Content = "Выбран производитель";
                     NAME_FAB = NAME_FABTextBox.Text;
                     ADDRESS = ADDRESSTextBox.Text;
                     CITY = CITYTextBox.Text;
@@ -170,7 +170,40 @@ namespace WpfApteka.Pages
 
         private void FilterFabTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            var textbox = sender as TextBox;
+            switch (FilterFabComboBox.SelectedIndex)
+            {
+                case 0:
+                    FabDataGrid.ItemsSource = SourceCore.DB.FABRICATOR.Where(filtercase => filtercase.NAME_FAB.Contains(textbox.Text)).ToList();
+                    break;
+                case 1:
+                    FabDataGrid.ItemsSource = SourceCore.DB.FABRICATOR.Where(filtercase => filtercase.ADDRESS.Contains(textbox.Text)).ToList();
+                    break;
+                case 2:
+                    FabDataGrid.ItemsSource = SourceCore.DB.FABRICATOR.Where(filtercase => filtercase.CITY.Contains(textbox.Text)).ToList();
+                    break;
+                case 3:
+                    FabDataGrid.ItemsSource = SourceCore.DB.FABRICATOR.Where(filtercase => filtercase.COUNTRY.Contains(textbox.Text)).ToList();
+                    break;
+                case 4:
+                    FabDataGrid.ItemsSource = SourceCore.DB.FABRICATOR.Where(filtercase => filtercase.TELEPHONE.Contains(textbox.Text)).ToList();
+                    break;
+            }
+        }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<String> Columns = new List<string>();
+            for (int I = 0; I < 5; I++)
+            {
+                Columns.Add(FabDataGrid.Columns[I].Header.ToString());
+            }
+            FilterFabComboBox.ItemsSource = Columns;
+            FilterFabComboBox.SelectedIndex = 0;
+            foreach (DataGridColumn Column in FabDataGrid.Columns)
+            {
+                Column.CanUserSort = false;
+            }
         }
     }
 }

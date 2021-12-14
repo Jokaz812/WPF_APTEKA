@@ -24,6 +24,7 @@
         <AssociationConnector Association="AptekaModel.FK_INVOICE_LIST_MEDICINE" ManuallyRouted="false" />
         <AssociationConnector Association="AptekaModel.FK_MEDICINE_RELEASE_FORM" ManuallyRouted="false" />
         <AssociationConnector Association="AptekaModel.FK_SHOPPING_LIST_MEDICINE" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AptekaModel.Users" Width="1.5" PointX="8.25" PointY="2.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

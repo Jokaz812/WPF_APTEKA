@@ -36,7 +36,7 @@
 
         <DataGrid x:Name="RealDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название формы лекарства" Binding="{Binding Path=NAME_REAL}" Width="*"/>
+                <DataGridTextColumn Header="Форма выпуска лекарства" Binding="{Binding Path=NAME_REAL}" Width="*"/>
                 <DataGridTemplateColumn Header="Управление">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

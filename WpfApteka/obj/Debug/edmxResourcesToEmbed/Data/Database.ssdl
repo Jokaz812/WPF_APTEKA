@@ -85,6 +85,14 @@
     <Property Name="COUNTRY" Type="varchar" MaxLength="30" />
     <Property Name="TELEPHONE" Type="varchar" MaxLength="12" />
   </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="login" Type="nvarchar" MaxLength="25" />
+    <Property Name="password" Type="nvarchar" MaxLength="25" />
+  </EntityType>
   <EntityType Name="WORKERS">
     <Key>
       <PropertyRef Name="ID_W" />
@@ -246,6 +254,7 @@
     <EntitySet Name="RELEASE_FORM" EntityType="Self.RELEASE_FORM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SHOPPING_LIST" EntityType="Self.SHOPPING_LIST" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SUPPLIER" EntityType="Self.SUPPLIER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WORKERS" EntityType="Self.WORKERS" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_CHECKS_WORKERS" Association="Self.FK_CHECKS_WORKERS">
       <End Role="WORKERS" EntitySet="WORKERS" />

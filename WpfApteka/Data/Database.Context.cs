@@ -37,6 +37,7 @@ namespace WpfApteka.Data
         public virtual DbSet<SHOPPING_LIST> SHOPPING_LIST { get; set; }
         public virtual DbSet<SUPPLIER> SUPPLIER { get; set; }
         public virtual DbSet<WORKERS> WORKERS { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

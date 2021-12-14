@@ -174,7 +174,46 @@ namespace WpfApteka.Pages
 
         private void FilterMedBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            var textbox = sender as TextBox;
+            switch (FilterMedComboBox.SelectedIndex)
+            {
+                case 0:
+                    MedDataGrid.ItemsSource = SourceCore.DB.MEDICINE.Where(filtercase => filtercase.NAME_MED.Contains(textbox.Text)).ToList();
+                    break;
+                case 1:
+                    MedDataGrid.ItemsSource = SourceCore.DB.MEDICINE.Where(filtercase => filtercase.CATEGORIES.NAME_CAT.Contains(textbox.Text)).ToList();
+                    break;
+                case 2:
+                    MedDataGrid.ItemsSource = SourceCore.DB.MEDICINE.Where(filtercase => filtercase.DESCRIPTION.Contains(textbox.Text)).ToList();
+                    break;
+                case 3:
+                    MedDataGrid.ItemsSource = SourceCore.DB.MEDICINE.Where(filtercase => filtercase.RELEASE_FORM.NAME_REAL.Contains(textbox.Text)).ToList();
+                    break;
+                case 4:
+                    MedDataGrid.ItemsSource = SourceCore.DB.MEDICINE.Where(filtercase => filtercase.FABRICATOR.NAME_FAB.Contains(textbox.Text)).ToList();
+                    break;
+                case 5:
+                    MedDataGrid.ItemsSource = SourceCore.DB.MEDICINE.Where(filtercase => filtercase.DATE_DELIVERY.ToString().Contains(textbox.Text)).ToList();
+                    break;
+                case 6:
+                    MedDataGrid.ItemsSource = SourceCore.DB.MEDICINE.Where(filtercase => filtercase.PRICE.ToString().Contains(textbox.Text)).ToList();
+                    break;
+            }
+        }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<String> Columns = new List<string>();
+            for (int I = 0; I < 7; I++)
+            {
+                Columns.Add(MedDataGrid.Columns[I].Header.ToString());
+            }
+            FilterMedComboBox.ItemsSource = Columns;
+            FilterMedComboBox.SelectedIndex = 0;
+            foreach (DataGridColumn Column in MedDataGrid.Columns)
+            {
+                Column.CanUserSort = false;
+            }
         }
     }
 }

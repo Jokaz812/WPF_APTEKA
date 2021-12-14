@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfApteka.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SupPage">
+      Title="SupPage" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -35,7 +35,7 @@
 
         <DataGrid x:Name="SupDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название поставщика" Binding="{Binding Path=NAME_SUP}" Width="2*"/>
+                <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=NAME_SUP}" Width="2*"/>
                 <DataGridTextColumn Header="Адресс" Binding="{Binding Path=ADDRESS}" Width="*"/>
                 <DataGridTextColumn Header="Город" Binding="{Binding Path=CITY}" Width="*"/>
                 <DataGridTextColumn Header="Страна" Binding="{Binding Path=COUNTRY}" Width="*"/>

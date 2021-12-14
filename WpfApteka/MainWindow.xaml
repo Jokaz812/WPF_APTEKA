@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApteka"
         mc:Ignorable="d"
-        Title="Pharmacy kiosk" 
+        Title="Аптечный киоск" 
         Height="600" Width="1000"
         MinHeight="250" MinWidth="610"
         WindowStartupLocation="CenterScreen"
@@ -26,40 +26,29 @@
 
         <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Background="#badcf7" >
             <Image Source="Images/1.png" Width="150" Height="100" Margin="0,10,0,0"/>
-            <Label x:Name="RoleLabel" Content="Администратор" 
-                   FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center"/>
-            <Button x:Name="MedButton" Content="Лекарство" Height="25" 
-                 Margin="5,5,5,0" Click="MedButton_Click" />
-            <Button x:Name="CatButton" Content="Категория" Height="25" 
-                 Margin="5,5,5,0" Click="CatButton_Click" />
-            <Button x:Name="RealButton" Content="Форма выпуска лекарства" Height="25" 
-                 Margin="5,5,5,0" Click="RealButton_Click" />
-            <Button x:Name="WorkButton" Content="Сотрудники" Height="25" 
-                 Margin="5,5,5,0" Click="WorkButton_Click" />
-            <Button x:Name="FabButton" Content="Производитель" Height="25" 
-                 Margin="5,5,5,0" Click="FabButton_Click" />
-            <Button x:Name="SupButton" Content="Поставщик" Height="25" 
-                 Margin="5,5,5,0" Click="SupButton_Click" />
-            <Button x:Name="Invoice_ListButton" Content="Список накладной" Height="25" 
-                 Margin="5,5,5,0" Click="Invoice_ListButton_Click" />
-            <Button x:Name="InvoiceButton" Content="Накладная" Height="25" 
-                 Margin="5,5,5,0" Click="InvoiceButton_Click" />
-            <Button x:Name="Shop_ListButton" Content="Список покупок" Height="25" 
-                 Margin="5,5,5,0" Click="Shop_ListButton_Click" />
-            <Button x:Name="CheckButton" Content="Чек" Height="25" 
-                 Margin="5,5,5,0" Click="CheckButton_Click" />
+            <Label x:Name="RoleLabel" Content="Администратор" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center"/>
+            <Button x:Name="MedButton" Content="Лекарство" Height="25" Margin="5,5,5,0" Click="MedButton_Click" />
+            <Button x:Name="CatButton" Content="Категория" Height="25" Margin="5,5,5,0" Click="CatButton_Click" />
+            <Button x:Name="RealButton" Content="Форма выпуска лекарства" Height="25" Margin="5,5,5,0" Click="RealButton_Click" />
+            <Button x:Name="WorkButton" Content="Сотрудники" Height="25" Margin="5,5,5,0" Click="WorkButton_Click" />
+            <Button x:Name="FabButton" Content="Производитель" Height="25" Margin="5,5,5,0" Click="FabButton_Click" />
+            <Button x:Name="SupButton" Content="Поставщик" Height="25" Margin="5,5,5,0" Click="SupButton_Click" />
+            <Button x:Name="Invoice_ListButton" Content="Список накладных" Height="25" Margin="5,5,5,0" Click="Invoice_ListButton_Click" />
+            <Button x:Name="InvoiceButton" Content="Накладная" Height="25" Margin="5,5,5,0" Click="InvoiceButton_Click" />
+            <Button x:Name="Shop_ListButton" Content="Список покупок" Height="25" Margin="5,5,5,0" Click="Shop_ListButton_Click" />
+            <Button x:Name="CheckButton" Content="Чек" Height="25" Margin="5,5,5,0" Click="CheckButton_Click" />
         </StackPanel>
 
       <GridSplitter Background="#badcf7" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" 
                   Width="3" HorizontalAlignment="Stretch" />
 
-        <Frame x:Name="RealFrame" Grid.Column="2" Grid.Row="0" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
+        <Frame x:Name="PharmacyKioskFrame" Grid.Column="2" Grid.Row="0" Background="#cee0f2" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
 
         <Rectangle Grid.Column="2" Grid.Row="1" Fill="#badcf7" Grid.ColumnSpan="2" />
 
         <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Grid.ColumnSpan="2">
             <Button x:Name="PreviosPageButton" Content="Назад" Width="75"
-                    Margin="5,5,0,5" Click="PreviosPageButton_Click"/>
+                    Margin="0,5,0,5" Click="PreviosPageButton_Click"/>
             <Button x:Name="NextPageButton" Content="Вперед" Width="75" 
                     Margin="5,5,0,5" Click="NextPageButton_Click"/>
         </StackPanel>

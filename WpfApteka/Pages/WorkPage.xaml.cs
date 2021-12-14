@@ -175,7 +175,43 @@ namespace WpfApteka.Pages
 
         private void FilterWorkBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            var textbox = sender as TextBox;
+            switch (FilterWorkComboBox.SelectedIndex)
+            {
+                case 0:
+                    WorkDataGrid.ItemsSource = SourceCore.DB.WORKERS.Where(filtercase => filtercase.FIO.Contains(textbox.Text)).ToList();
+                    break;
+                case 1:
+                    WorkDataGrid.ItemsSource = SourceCore.DB.WORKERS.Where(filtercase => filtercase.DATE_BIRTHDAY.ToString().Contains(textbox.Text)).ToList();
+                    break;
+                case 2:
+                    WorkDataGrid.ItemsSource = SourceCore.DB.WORKERS.Where(filtercase => filtercase.DATE_ACCEPTANCE.ToString().Contains(textbox.Text)).ToList();
+                    break;
+                case 3:
+                    WorkDataGrid.ItemsSource = SourceCore.DB.WORKERS.Where(filtercase => filtercase.ADDRESS.Contains(textbox.Text)).ToList();
+                    break;
+                case 4:
+                    WorkDataGrid.ItemsSource = SourceCore.DB.WORKERS.Where(filtercase => filtercase.CITY.Contains(textbox.Text)).ToList();
+                    break;
+                case 5:
+                    WorkDataGrid.ItemsSource = SourceCore.DB.WORKERS.Where(filtercase => filtercase.TELEPHONE.Contains(textbox.Text)).ToList();
+                    break;
+            }
+        }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<String> Columns = new List<string>();
+            for (int I = 0; I < 6; I++)
+            {
+                Columns.Add(WorkDataGrid.Columns[I].Header.ToString());
+            }
+            FilterWorkComboBox.ItemsSource = Columns;
+            FilterWorkComboBox.SelectedIndex = 0;
+            foreach (DataGridColumn Column in WorkDataGrid.Columns)
+            {
+                Column.CanUserSort = false;
+            }
         }
     }
 }

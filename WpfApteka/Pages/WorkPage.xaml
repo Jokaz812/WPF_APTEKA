@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfApteka.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="WorkPage">
+      Title="WorkPage" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -35,7 +35,7 @@
 
         <DataGrid x:Name="WorkDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Фамилия Имя Отчества" Binding="{Binding Path=FIO}" Width="2*"/>
+                <DataGridTextColumn Header="Сотрудник" Binding="{Binding Path=FIO}" Width="2*"/>
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.Header>
                         Дата рождения

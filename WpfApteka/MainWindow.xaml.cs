@@ -28,52 +28,52 @@ namespace WpfApteka
 
         private void MedButton_Click(object sender, RoutedEventArgs e)
         {
-            RealFrame.Navigate(new Pages.MedPage());
+            PharmacyKioskFrame.Navigate(new Pages.MedPage());
         }
 
         private void CatButton_Click(object sender, RoutedEventArgs e)
         {
-            RealFrame.Navigate(new Pages.CatPage());
+            PharmacyKioskFrame.Navigate(new Pages.CatPage());
         }
 
         private void RealButton_Click(object sender, RoutedEventArgs e)
         {
-            RealFrame.Navigate(new Pages.RealPage());
+            PharmacyKioskFrame.Navigate(new Pages.RealPage());
         }
 
         private void WorkButton_Click(object sender, RoutedEventArgs e)
         {
-            RealFrame.Navigate(new Pages.WorkPage());
+            PharmacyKioskFrame.Navigate(new Pages.WorkPage());
         }
 
         private void FabButton_Click(object sender, RoutedEventArgs e)
         {
-            RealFrame.Navigate(new Pages.FabPage());
+            PharmacyKioskFrame.Navigate(new Pages.FabPage());
         }
 
         private void SupButton_Click(object sender, RoutedEventArgs e)
         {
-            RealFrame.Navigate(new Pages.SupPage());
+            PharmacyKioskFrame.Navigate(new Pages.SupPage());
         }
 
         private void Invoice_ListButton_Click(object sender, RoutedEventArgs e)
         {
-            RealFrame.Navigate(new Pages.InvListPage());
+            PharmacyKioskFrame.Navigate(new Pages.InvListPage());
         }
 
         private void InvoiceButton_Click(object sender, RoutedEventArgs e)
         {
-            RealFrame.Navigate(new Pages.InvPage());
+            PharmacyKioskFrame.Navigate(new Pages.InvPage());
         }
 
         private void Shop_ListButton_Click(object sender, RoutedEventArgs e)
         {
-            RealFrame.Navigate(new Pages.ShopListPage());
+            PharmacyKioskFrame.Navigate(new Pages.ShopListPage());
         }
 
         private void CheckButton_Click(object sender, RoutedEventArgs e)
         {
-            RealFrame.Navigate(new Pages.CheckPage());
+            PharmacyKioskFrame.Navigate(new Pages.CheckPage());
         }
 
         private void NextPageButton_Click(object sender, RoutedEventArgs e)
@@ -88,7 +88,7 @@ namespace WpfApteka
 
         private void ClosePageButton_Click(object sender, RoutedEventArgs e)
         {
-            RealFrame.Content = null;
+            PharmacyKioskFrame.Content = null;
         }
     }
 }

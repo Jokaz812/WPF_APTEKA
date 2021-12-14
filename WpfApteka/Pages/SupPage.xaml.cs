@@ -171,7 +171,40 @@ namespace WpfApteka.Pages
 
         private void FilterSupBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            var textbox = sender as TextBox;
+            switch (FilterSupComboBox.SelectedIndex)
+            {
+                case 0:
+                    SupDataGrid.ItemsSource = SourceCore.DB.SUPPLIER.Where(filtercase => filtercase.NAME_SUP.Contains(textbox.Text)).ToList();
+                    break;
+                case 1:
+                    SupDataGrid.ItemsSource = SourceCore.DB.SUPPLIER.Where(filtercase => filtercase.ADDRESS.Contains(textbox.Text)).ToList();
+                    break;
+                case 2:
+                    SupDataGrid.ItemsSource = SourceCore.DB.SUPPLIER.Where(filtercase => filtercase.CITY.Contains(textbox.Text)).ToList();
+                    break;
+                case 3:
+                    SupDataGrid.ItemsSource = SourceCore.DB.SUPPLIER.Where(filtercase => filtercase.COUNTRY.Contains(textbox.Text)).ToList();
+                    break;
+                case 4:
+                    SupDataGrid.ItemsSource = SourceCore.DB.SUPPLIER.Where(filtercase => filtercase.TELEPHONE.Contains(textbox.Text)).ToList();
+                    break;
+            }
+        }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<String> Columns = new List<string>();
+            for (int I = 0; I < 5; I++)
+            {
+                Columns.Add(SupDataGrid.Columns[I].Header.ToString());
+            }
+            FilterSupComboBox.ItemsSource = Columns;
+            FilterSupComboBox.SelectedIndex = 0;
+            foreach (DataGridColumn Column in SupDataGrid.Columns)
+            {
+                Column.CanUserSort = false;
+            }
         }
     }
 }
