@@ -166,3 +166,7 @@ D:\4-ИС-1\Нургазизов\WpfApteka\WpfApteka\obj\Debug\AuthorizationWind
 D:\4-ИС-1\Нургазизов\WpfApteka\WpfApteka\obj\Debug\RegistrationWindow.g.cs
 D:\4-ИС-1\Нургазизов\WpfApteka\WpfApteka\obj\Debug\RegistrationWindow.baml
 D:\4-ИС-1\Нургазизов\WpfApteka\WpfApteka\obj\Debug\WpfApteka.csprojAssemblyReference.cache
+D:\4is1\Нургазизов\WpfApteka\WpfApteka\obj\Debug\AuthorizationWindow.g.cs
+D:\4is1\Нургазизов\WpfApteka\WpfApteka\obj\Debug\RegistrationWindow.g.cs
+D:\4is1\Нургазизов\WpfApteka\WpfApteka\obj\Debug\AuthorizationWindow.baml
+D:\4is1\Нургазизов\WpfApteka\WpfApteka\obj\Debug\RegistrationWindow.baml

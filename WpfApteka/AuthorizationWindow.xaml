@@ -30,9 +30,9 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Label Content="Логин" Margin="36,15,0,5" FontSize="16" Grid.Column="0" Grid.Row="0"/>
-                <TextBox x:Name="LoginText" Margin="5,18,16,5" FontSize="16" Grid.Column="1" Grid.Row="0" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="LoginText" Text="user" Margin="5,18,16,5" FontSize="16" Grid.Column="1" Grid.Row="0" VerticalContentAlignment="Center"/>
                 <Label Content="Пароль" Margin="36,15,0,5" FontSize="16" Grid.Column="0" Grid.Row="1"/>
-                <PasswordBox x:Name="PasswordText" Margin="5,18,16,5"  FontSize="16" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center"/>
+                <PasswordBox x:Name="PasswordText" Password="user"  Margin="5,18,16,5" FontSize="16" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center"/>
                 <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button x:Name="RegistrationButton" Content="Registration" Height="35" Width="100" Margin="15,25,15,10" Click="RegistrationButton_Click"/>
                     <Label Content="|" FontSize="26" FontWeight="Bold" VerticalContentAlignment="Bottom" Foreground="Gray" RenderTransformOrigin="0.6,0.278" Margin="0,0,0,10"/>

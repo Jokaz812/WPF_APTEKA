@@ -26,67 +26,66 @@ namespace WpfApteka.Pages
             InitializeComponent();
             DataContext = this;
             CheckDataGrid.ItemsSource = SourceCore.DB.CHECKS.ToList();
+            listBox1.ItemsSource = SourceCore.DB.CHECKS.ToList();
            // WorkComboBox.ItemsSource = SourceCore.DB.WORKERS.ToList();
         }
 
-        private void AddCheckButton_Click(object sender, RoutedEventArgs e)
-        {
-            //if (CheckChangeColumn.Width.Value == 0)
-            //{
-            //    CheckChangeColumn.Width = new GridLength(250);
-            //    CheckSplitterColumn.Width = GridLength.Auto;
-            //    if ((sender as Button).Content.ToString() == "Добавить")
-            //    {
-            //        CheckDataGrid.SelectedItem = null;
-            //    }
-            //}
-            //else
-            //{
-            //    CheckChangeColumn.Width = new GridLength(0);
-            //    CheckSplitterColumn.Width = new GridLength(0);
-            //}
-        }
+        //private void AddCheckButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (CheckChangeColumn.Width.Value == 0)
+        //    {
+        //        CheckSplitterColumn.Width = GridLength.Auto;
+        //        if ((sender as Button).Content.ToString() == "Добавить")
+        //        {
+        //            CheckDataGrid.SelectedItem = null;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        CheckSplitterColumn.Width = new GridLength(0);
+        //    }
+        //}
 
-        private void CopyCheckButton_Click(object sender, RoutedEventArgs e)
-        {
-            //if (CheckChangeColumn.Width.Value == 0)
-            //{
-            //    CheckChangeColumn.Width = new GridLength(250);
-            //    CheckSplitterColumn.Width = GridLength.Auto;
-            //    if (CheckDataGrid.SelectedItem != null)
-            //    {
-            //        CheckLabel.Content = "Выбран чек";
-            //        ID_W = WorkComboBox.SelectedIndex;
-            //        TIME_SALE = TIME_SALETextBox.Text;
-            //        DATE_SALE = DATE_SALETextBox.Text;
-            //        CheckDataGrid.IsHitTestVisible = false;
-            //        CheckDataGrid.SelectedItem = null;
-            //        WorkComboBox.SelectedIndex = ID_W;
-            //        TIME_SALETextBox.Text = TIME_SALE;
-            //        DATE_SALETextBox.Text = DATE_SALE;
-            //    }
-            //}
-            //else
-            //{
-            //    CheckChangeColumn.Width = new GridLength(0);
-            //    CheckSplitterColumn.Width = new GridLength(0);
-            //    CheckDataGrid.IsHitTestVisible = true;
-            //}
-        }
+        //private void CopyCheckButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (CheckChangeColumn.Width.Value == 0)
+        //    {
+        //        CheckChangeColumn.Width = new GridLength(250);
+        //        CheckSplitterColumn.Width = GridLength.Auto;
+        //        if (CheckDataGrid.SelectedItem != null)
+        //        {
+        //            CheckLabel.Content = "Выбран чек";
+        //            ID_W = WorkComboBox.SelectedIndex;
+        //            TIME_SALE = TIME_SALETextBox.Text;
+        //            DATE_SALE = DATE_SALETextBox.Text;
+        //            CheckDataGrid.IsHitTestVisible = false;
+        //            CheckDataGrid.SelectedItem = null;
+        //            WorkComboBox.SelectedIndex = ID_W;
+        //            TIME_SALETextBox.Text = TIME_SALE;
+        //            DATE_SALETextBox.Text = DATE_SALE;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        CheckChangeColumn.Width = new GridLength(0);
+        //        CheckSplitterColumn.Width = new GridLength(0);
+        //        CheckDataGrid.IsHitTestVisible = true;
+        //    }
+        //}
 
-        private void EditCheckButton_Click(object sender, RoutedEventArgs e)
-        {
-            //if (CheckChangeColumn.Width.Value == 0)
-            //{
-            //    CheckChangeColumn.Width = new GridLength(250);
-            //    CheckSplitterColumn.Width = GridLength.Auto;
-            //}
-            //else
-            //{
-            //    CheckChangeColumn.Width = new GridLength(0);
-            //    CheckSplitterColumn.Width = new GridLength(0);
-            //}
-        }
+        //private void EditCheckButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (CheckChangeColumn.Width.Value == 0)
+        //    {
+        //        CheckChangeColumn.Width = new GridLength(250);
+        //        CheckSplitterColumn.Width = GridLength.Auto;
+        //    }
+        //    else
+        //    {
+        //        CheckChangeColumn.Width = new GridLength(0);
+        //        CheckSplitterColumn.Width = new GridLength(0);
+        //    }
+        //}
 
         private void DeleteCheckButton_Click(object sender, RoutedEventArgs e)
         {
@@ -130,18 +129,18 @@ namespace WpfApteka.Pages
 
         private void CommitButtonCheck(object sender, RoutedEventArgs e)
         {
-            //var S = new Data.CHECKS();
+            var S = new Data.CHECKS();
             //S.WORKERS = (Data.WORKERS)WorkComboBox.SelectedItem;
             //S.TIME_SALE = TimeSpan.Parse(TIME_SALETextBox.Text);
             //S.DATE_SALE = Convert.ToDateTime(DATE_SALETextBox.Text);
-            //if (CheckDataGrid.SelectedItem == null)
-            //{
-            //    SourceCore.DB.CHECKS.Add(S);
-            //}
-            //SourceCore.DB.SaveChanges();
-            //UpdateGrid(S);
-            //CheckDataGrid.Focus();
-            //CloseEdChangeClick(sender, e);
+            if (CheckDataGrid.SelectedItem == null)
+            {
+                SourceCore.DB.CHECKS.Add(S);
+            }
+            SourceCore.DB.SaveChanges();
+            UpdateGrid(S);
+            CheckDataGrid.Focus();
+            CloseEdChangeClick(sender, e);
         }
 
         public void UpdateGrid(Data.CHECKS Check)
@@ -152,6 +151,13 @@ namespace WpfApteka.Pages
             }
             CheckDataGrid.ItemsSource = SourceCore.DB.CHECKS.ToList();
             CheckDataGrid.SelectedItem = Check;
+
+            if ((Check == null) && (listBox1.ItemsSource != null))
+            {
+                Check = (Data.CHECKS)listBox1.SelectedItem;
+            }
+            listBox1.ItemsSource = SourceCore.DB.CHECKS.ToList();
+            listBox1.SelectedItem = Check;
         }
 
         private void FilterCheckComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -166,12 +172,15 @@ namespace WpfApteka.Pages
             {
                 case 0:
                     CheckDataGrid.ItemsSource = SourceCore.DB.CHECKS.Where(filtercase => filtercase.WORKERS.FIO.Contains(textbox.Text)).ToList();
+                    listBox1.ItemsSource = SourceCore.DB.CHECKS.Where(filrercase => filrercase.WORKERS.FIO.Contains(textbox.Text)).ToList();
                     break;
                 case 1:
                     CheckDataGrid.ItemsSource = SourceCore.DB.CHECKS.Where(filtercase => filtercase.TIME_SALE.ToString().Contains(textbox.Text)).ToList();
+                    listBox1.ItemsSource = SourceCore.DB.CHECKS.Where(filtercase => filtercase.TIME_SALE.ToString().Contains(textbox.Text)).ToList();
                     break;
                 case 2:
                     CheckDataGrid.ItemsSource = SourceCore.DB.CHECKS.Where(filtercase => filtercase.DATE_SALE.ToString().Contains(textbox.Text)).ToList();
+                    listBox1.ItemsSource = SourceCore.DB.CHECKS.Where(filtercase => filtercase.DATE_SALE.ToString().Contains(textbox.Text)).ToList();
                     break;
             }
         }
@@ -204,6 +213,28 @@ namespace WpfApteka.Pages
         private void DeleteShopListButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void AddNewCheck_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void NewCheck_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CheckDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            listBox1.SelectedItem = CheckDataGrid.SelectedItem;
+            listBox1.Focus();
+        }
+
+        private void listBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CheckDataGrid.SelectedItem = listBox1.SelectedItem;
+            CheckDataGrid.Focus();
         }
     }
 }
