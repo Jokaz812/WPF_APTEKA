@@ -217,7 +217,7 @@ namespace WpfApteka.Pages
 
         private void AddNewCheck_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new CheckDlgPage());
         }
 
         private void NewCheck_Click(object sender, RoutedEventArgs e)

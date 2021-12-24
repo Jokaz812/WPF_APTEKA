@@ -37,18 +37,6 @@
                         <DataTemplate>
                             <Label Content="{Binding Path=DATE_SALE}"/>
                         </DataTemplate>
-
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Управление">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Content="Доб." Width="30" Margin="5,0,0,0" FontSize="8" />
-                                <Button Content="Изм." Width="30" Margin="5,0,5,0" FontSize="8" />
-                                <Button Content="Удал." Width="30" Margin="0,0,5,0" FontSize="8" Click="DeleteCheckButton_Click"/>
-                            </StackPanel>
-                        </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
@@ -78,73 +66,4 @@
         <Button Content="Добавить в чек" Grid.Row="3" Grid.Column="2" Width="120" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 5 35" Click="AddNewCheck_Click"/>
         <Button Content="Оформить чек" Grid.Row="3" Grid.Column="2" Width="120" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 5 0" Click="NewCheck_Click"/>
     </Grid>
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
-            <RowDefinition Height="35"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Rectangle Fill="#cee0f2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
-        <Label Content="Чек" Grid.ColumnSpan="3" FontSize="16" VerticalAlignment="Bottom" FontWeight="ExtraBlack"/>
-        <StackPanel Background="#cee0f2" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
-            <Button x:Name="AddCheckButton" Content="Добавить" Width="75" Margin="5,0,0,0" Click="AddCheckButton_Click" Height="25"/>
-            <Button x:Name="CopyCheckButton"  Content="Добавление на основе" Width="140" Margin="5,0,0,0" Click="CopyCheckButton_Click" Height="25"/>
-            <Button x:Name="EditCheckButton" Content="Изменить" Width="75" Margin="5,0,0,0" Click="EditCheckButton_Click" Height="25"/>
-            <Button x:Name="DeleteCheckButton" Content="Удалить" Width="75" Margin="5,0,0,0" Click="DeleteCheckButton_Click" Height="25"/>
-            <ComboBox Name="FilterCheckComboBox" Width="170" Margin="5,5" SelectionChanged="FilterCheckComboBox_SelectionChanged"/>
-            <TextBox x:Name="FilterCheckTextBox" Width="246" Margin="0,5" TextChanged="FilterCheckTextBox_TextChanged" />
-        </StackPanel>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" MinWidth="200"/>
-                <ColumnDefinition Width="300" MinWidth="300"/>
-            </Grid.ColumnDefinitions>
-            <DataGrid x:Name="CheckDataGrid" Grid.Row="2" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Сотрудник" Binding="{Binding Path=WORKERS.FIO}" Width="*"/>
-                    <DataGridTextColumn Header="Время продажи" Binding="{Binding Path=TIME_SALE}" Width="*"/>
-                    <DataGridTemplateColumn Width="*">
-                        <DataGridTemplateColumn.Header>
-                            Дата продажи
-                        </DataGridTemplateColumn.Header>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Label Content="{Binding Path=DATE_SALE}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Управление">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Content="Изм." Width="30" Margin="5,0,0,0"
-                                            FontSize="8" Click="EditCheckButton_Click"/>
-                                    <Button Content="Удал." Width="30" Margin="5,0,5,0"
-                                            FontSize="8" Click="DeleteCheckButton_Click"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Rectangle Fill="#cee0f2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="Добавить" Width="75" Height="25" Margin="5 0 0 0" Grid.Column="2" Click="AddShopListButton_Click"/>
-                    <Button Content="Изменить" Width="75" Height="25" Margin="5 0 0 0" Grid.Column="2" Click="EditShopListButton_Click"/>
-                    <Button Content="Удалить"  Width="75" Height="25" Margin="5 0 0 0" Grid.Column="2" Click="DeleteShopListButton_Click"/>
-                </StackPanel>
-                <DataGrid x:Name="ShopListDataGrid" ItemsSource ="{Binding ElementName=CheckDataGrid, Path =SelectedItem.SHOPPING_LIST}"  Grid.Row="2" Grid.Column="2" AutoGenerateColumns="False" CanUserAddRows="False" Background="White" >
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Лекарство" Binding="{Binding MEDICINE.NAME_MED}" Width="10*" MaxWidth="150"/>
-                        <DataGridTextColumn Header="Количество" Binding="{Binding COUNTS}" Width="*"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-        </Grid>
-    </Grid>-->
 </Page>

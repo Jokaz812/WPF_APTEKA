@@ -70,6 +70,9 @@
     <Compile Include="Data\Users.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CheckDlgPage.xaml.cs">
+      <DependentUpon>CheckDlgPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CheckPage.xaml.cs">
       <DependentUpon>CheckPage.xaml</DependentUpon>
     </Compile>
@@ -169,6 +172,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\CatPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CheckDlgPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

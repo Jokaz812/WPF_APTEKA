@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\4is1\Нургазизов\WpfApteka\WpfApteka\obj\Debug\
+D:\4ИС1\Нургазизов\WpfApteka\WpfApteka\obj\Debug\
 WpfApteka
 none
 false
 DEBUG;TRACE
-D:\4is1\Нургазизов\WpfApteka\WpfApteka\App.xaml
-131233478399
+D:\4ИС1\Нургазизов\WpfApteka\WpfApteka\App.xaml
+14171070601
 2-906593305
-35-399397435
-18-158419936
-AuthorizationWindow.xaml;MainWindow.xaml;Pages\CatPage.xaml;Pages\CheckPage.xaml;Pages\FabPage.xaml;Pages\InvListPage.xaml;Pages\InvPage.xaml;Pages\MedPage.xaml;Pages\RealPage.xaml;Pages\ShopListPage.xaml;Pages\SupPage.xaml;Pages\WorkPage.xaml;RegistrationWindow.xaml;
+36-334341277
+18-983220621
+AuthorizationWindow.xaml;MainWindow.xaml;Pages\CatPage.xaml;Pages\CheckDlgPage.xaml;Pages\CheckPage.xaml;Pages\FabPage.xaml;Pages\InvListPage.xaml;Pages\InvPage.xaml;Pages\MedPage.xaml;Pages\RealPage.xaml;Pages\ShopListPage.xaml;Pages\SupPage.xaml;Pages\WorkPage.xaml;RegistrationWindow.xaml;
 
 True
 
